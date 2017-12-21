@@ -50,3 +50,7 @@
 wangK -- 2017-12-21 13:00
 -----------------------
 hello world!
+
+naotakaK -- 2017-12-21 14:30
+-----------------------
+added files to test flask compatability with google maps API
