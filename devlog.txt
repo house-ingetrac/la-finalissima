@@ -47,14 +47,19 @@
 
 
 =======================================================
-wangK -- 2017-12-21 13:00
------------------------
+kellyW -- 2017-12-21 13:00
 hello world!
 
 naotakaK -- 2017-12-21 14:30
------------------------
 added files to test flask compatability with google maps API
+
+michaelR -- 2017-12-21 21:12
+added design.pdf to the repo
 
 shakilR -- 2017-12-21 21:50
 added log.sh script to repo for easy devlogging
+
+kellyW -- 2017-12-21 22:13
+added modified design.pdf with second db table to repo
+
 
