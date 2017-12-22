@@ -62,4 +62,5 @@ added log.sh script to repo for easy devlogging
 kellyW -- 2017-12-21 22:13
 added modified design.pdf with second db table to repo
 
-
+michaelR -- 2017-12-22 13:19
+added description to design.pdf
