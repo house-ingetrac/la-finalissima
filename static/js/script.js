@@ -1,20 +1,67 @@
-var map, heatmap, infoWindow;
+var map, heatmap, infoWindow, loc, dir, movement;
 var mapDiv = document.getElementById('map');
 
+function move() {
+    //console.log('moving');
+    loc.lat = map.getCenter().lat();
+    loc.lng = map.getCenter().lng();
+    loc.lat += dir.lat;
+    loc.lng += dir.lng;
+    map.panTo(loc);
+}
+
+function keyDownHandler(e) {
+    //console.log('keydown');
+    switch (e.keyCode) {
+        case 37:
+            dir.lng = -0.00005;
+            break;
+        case 38:
+            dir.lat = 0.00005;
+            break;
+        case 39:
+            dir.lng = 0.00005;
+            break;
+        case 40:
+            dir.lat = -0.00005;
+            break;
+    }
+}
+
+function keyUpHandler(e) {
+    //console.log('keyup');
+    switch (e.keyCode) {
+        case 37:
+            dir.lng = 0;
+            break;
+        case 38:
+            dir.lat = 0;
+            break;
+        case 39:
+            dir.lng = 0;
+            break;
+        case 40:
+            dir.lat = 0;
+            break;
+    }
+}
+            
 function initMap() {
-    var myLatLng = {lat: 40.71775389365837, lng: -74.01409633421895};
+    loc = {lat: 40.71775389365837, lng: -74.01409633421895};
+    dir = {lat: 0, lng: 0};
     map = new google.maps.Map(mapDiv, {
         zoom: 17,
-        center: myLatLng,
+        center: loc,
         mapTypeId: 'roadmap',
-        //gestureHandling: 'none',
-        zoomControl: false
+        gestureHandling: 'none',
+        keyboardShortcuts: false,
+        zoomControl: false,
+        disableDefaultUI: true
     });
 
-    mapDiv.addEventListener('mouseover', function() {
-        mapDiv.focus();
-        console.log('woah');
-    });
+    window.addEventListener('keydown', keyDownHandler);
+    window.addEventListener('keyup', keyUpHandler);
+    movement = setInterval(move, 25);
 
     /*
     heatmap = new google.maps.visualization.HeatmapLayer({
@@ -31,7 +78,7 @@ function initMap() {
     });
     */
 
-    infoWindow = new google.maps.InfoWindow;
+    //infoWindow = new google.maps.InfoWindow;
     /***
         // Try HTML5 geolocation.
         if (navigator.geolocation) {

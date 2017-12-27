@@ -64,3 +64,7 @@ added modified design.pdf with second db table to repo
 
 michaelR -- 2017-12-22 13:19
 added description to design.pdf
+
+shakilR -- 2017-12-26 22:35
+setup movement for map using arrow keys
+
