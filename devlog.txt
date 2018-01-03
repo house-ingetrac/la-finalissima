@@ -71,3 +71,13 @@ setup movement for map using arrow keys
 naotakaK -- 2018-01-02 13:15
 changed map center to times square and added random point generation for heatmap; still needs to be tweaked
 
+naotakaK -- 2018-01-03 13:12
+More work with the map - need to implement
+Random spawning of points based on player location
+Associate points in heatmap with % chance of encountering pokemon, and scale to the size of that patch of grass appropriately
+Animate player sprite
+Hide POIs and other irrelevant info
+Spawning pokecenters at certain locations
+Flying to other cities
+
+
