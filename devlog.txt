@@ -76,5 +76,8 @@ setup movement for map using arrow keys
 naotakaK -- 2018-01-02 13:15
 changed map center to times square and added random point generation for heatmap; still needs to be tweaked
 
+kellyW -- 2018-01-02 13:15
+added base template, fixed map loading, issue with title and head
+
 michaelR -- 2018-01-03 13:06
 fixed base template to properly map onto branching templates -- blocks head and title removed, only content is necessary for any other templates; index template no longer uses head/title blocks
