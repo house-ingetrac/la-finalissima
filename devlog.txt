@@ -1,4 +1,9 @@
-                    _...
+//Team Blubberduck {Naotaka Kinoshita, Shakil Rafi, Michael Ruvinshteyn, Kelly Wang}
+//SoftDev1 pd07
+//p02 -- Pokemon GOgle
+//2017-12-21
+
+_...
               o_.-"`    `\
        .--.  _ `'-._.-'""-;     _
      .'    \`_\_  {_.-a"a-}  _ / \
@@ -71,6 +76,9 @@ setup movement for map using arrow keys
 naotakaK -- 2018-01-02 13:15
 changed map center to times square and added random point generation for heatmap; still needs to be tweaked
 
+michaelR -- 2018-01-03 13:06
+fixed base template to properly map onto branching templates -- blocks head and title removed, only content is necessary for any other templates; index template no longer uses head/title blocks
+
 naotakaK -- 2018-01-03 13:12
 More work with the map - need to implement
 Random spawning of points based on player location
@@ -80,4 +88,5 @@ Hide POIs and other irrelevant info
 Spawning pokecenters at certain locations
 Flying to other cities
 
-
+kellyW -- 2018-01-02 13:15
+added base template, fixed map loading, issue with title and head

@@ -58,10 +58,12 @@ function initMap() {
         zoomControl: false,
         disableDefaultUI: true
     });
+  /***
     heatmap = new google.maps.visualization.HeatmapLayer({
         data: getPoints(),
         map: map
     });
+   ***/
     window.addEventListener('keydown', keyDownHandler);
     window.addEventListener('keyup', keyUpHandler);
     movement = setInterval(move, 25);
@@ -85,4 +87,12 @@ function genRandPoints(numPoints, lat, long) {
 function getPoints() {
   return genRandPoints(20, 40.76, -73.99);
   //new google.maps.LatLng(37.751266, -122.403355)
+}
+
+function heater() {
+    heatmap = new google.maps.visualization.HeatmapLayer({
+        data: getPoints(),
+        map: map,
+        radius: 30
+    });
 }
