@@ -1,22 +1,11 @@
-
 {% extends "base.html" %}
 
 
-<!DOCTYPE html>
-<html>
-  {% block head %}
-  <head>
-    <meta charset="utf-8">
-    <title>Pok&eacute;mon Gogle</title>
-    <link rel="stylesheet" href="/static/css/style.css"/>
-  </head>
-  {% endblock head %}
-  {% block content %}
-  <body>
-    <center>
-      <div id="map"></div>
-    </center>
-    <!--
+{% block content %}
+<center>
+  <div id="map"></div>
+</center>
+<!--
     <div id="floating-panel">
       <button onclick="toggleHeatmap()">Toggle Heatmap</button>
       <button onclick="changeGradient()">Change gradient</button>
@@ -24,10 +13,8 @@
       <button onclick="changeOpacity()">Change opacity</button>
     </div>
     -->
-    <script type="text/javascript" src="/static/js/script.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5URvaZcxj1ZKYBUkQOhNikXG29fj3YKQ&libraries=visualization&callback=initMap"></script>
+<script type="text/javascript" src="/static/js/script.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5URvaZcxj1ZKYBUkQOhNikXG29fj3YKQ&libraries=visualization&callback=initMap"></script>
 
-    HELLO!
-  </body>
-  {% endblock content %}
-</html>
+HELLO!
+{% endblock content %}
