@@ -54,6 +54,9 @@ added description to design.pdf
 shakilR -- 2017-12-26 22:35
 setup movement for map using arrow keys
 
+kellyW -- 2018-01-02 13:15
+added base template, fixed map loading, issue with title and head
+
 naotakaK -- 2018-01-02 13:15
 changed map center to times square and added random point generation for heatmap; still needs to be tweaked
 
@@ -69,5 +72,3 @@ Hide POIs and other irrelevant info
 Spawning pokecenters at certain locations
 Flying to other cities
 
-kellyW -- 2018-01-02 13:15
-added base template, fixed map loading, issue with title and head
