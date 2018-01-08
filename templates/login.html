@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<center>
+  <form method="POST" action="/auth">
+    <b><u>Log in here:</b></u><br><br>
+    <input type="text" name="user" placeholder="Username"><br><br>
+    <input type="password" name="password" placeholder="Password"><br><br>
+    <input type="submit" value="Log In">
+  </form>
+
+  <br><br>
+  <img style="width:200px;" src="http://piq.codeus.net/static/media/userpics/piq_24393_400x400.png">
+  <br><br>
+
+  <form method="POST" action="/create">
+    <b><u>Create account here:</b></u><br><br>
+    <input type="text" name="user" placeholder="Username"><br><br>
+    <input type="password" name="password" placeholder="Password"><br><br>
+    <input type="password" name="confpass" placeholder="Confirm Password"><br><br>
+    <input type="submit" value="Create Account">
+  </form>
+
+</center>
+
+
+{% endblock content %}
