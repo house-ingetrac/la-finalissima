@@ -75,3 +75,8 @@ Flying to other cities
 michaelR -- 2018-01-08 12:56
 created login template - login and create account forms on same page - CSS still needs to be added
 added icon to base.html - all sites now show a pokeball as their icon
+
+kellyW -- 2018-01-08 13:16
+added db.py - table for usernames and passwords
+added home.html
+rerouted and renamed templates
