@@ -1,6 +1,26 @@
 var map, heatmap, infoWindow, loc, dir, movement;
 var mapDiv = document.getElementById('map');
 
+var pkmnLocations = [];
+
+function encounter() {
+  //if (pkmnLocations.indexOf(map.getCenter()) >= 0) { //doesn't account for if it's "close enough"
+    //get a pokemon from API
+    //get text, sprite, etc
+    var contentString = "Filler stuff for now";
+    var sprite = "http://www.stuycs.org/_/rsrc/1506974930674/config/customLogo.gif?revision=2";
+    infoWindow = new google.maps.InfoWindow({
+      content:
+        "<div style='float:left'><img src='" +
+        sprite +
+        "'></div><div style='float:right; padding: 10px;'>" +
+        contentString,
+      postion: loc
+    })
+  infoWindow.open(map);
+  //}
+}
+
 function move() {
     //console.log('moving');
     loc.lat = map.getCenter().lat();
@@ -58,12 +78,11 @@ function initMap() {
         zoomControl: false,
         disableDefaultUI: true
     });
-  /***
     heatmap = new google.maps.visualization.HeatmapLayer({
-        data: getPoints(),
-        map: map
+      data: [],
+      map: map,
+      radius: 30
     });
-   ***/
     window.addEventListener('keydown', keyDownHandler);
     window.addEventListener('keyup', keyUpHandler);
     movement = setInterval(move, 25);
@@ -90,9 +109,12 @@ function getPoints() {
 }
 
 function heater() {
+  /***
     heatmap = new google.maps.visualization.HeatmapLayer({
         data: getPoints(),
         map: map,
         radius: 30
     });
+  ***/
+  heatmap.data.concat(getPoints());
 }
