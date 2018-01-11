@@ -95,5 +95,5 @@ Places search box - how to combine libraries?
 naotakaK -- 2018-01-11 18:29
 Having weird script error with 'google is not defined'
 The script error has something to do with the order that the scripts are declared (I think)
-DOwnloaded favicon and added to static/img
+Downloaded favicon and added to static/img
 
