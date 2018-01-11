@@ -82,7 +82,10 @@ added home.html
 rerouted and renamed templates
 
 naotakaK -- 2018-01-08 23:46
-Added limited info window functionality - for some reason, info windows are spawning in fixed location, not center of map. Otherwise, infowindows are ready for integration with PokeAPI. Place searches still need to be put in, I have some questions about libraries in the Maps API. Heatmaps : how to start off with nothing in the heatmap and then generate new points, maybe erase old ones?
+Added limited info window functionality - for some reason, info windows are spawning in fixed location, not center of map. 
+Otherwise, infowindows are ready for integration with PokeAPI. 
+Place searches still need to be put in, I have some questions about libraries in the Maps API. Heatmaps : how to start off with nothing in the heatmap and then generate new points, maybe erase old ones?
+
 naotakaK -- 2018-01-11 10:52
 FIXED INFO WINDOW PROBLEM!!!
 Working on live updating heatmaps through MVC arrays. 
