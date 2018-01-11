@@ -87,7 +87,7 @@ function getPoints() {
   //new google.maps.LatLng(37.751266, -122.403355)
 }
 
-//var heatPoints = new google.maps.MVCArray(heatLocations);
+var heatPoints = new google.maps.MVCArray(heatLocations);
 
 heatmap = new google.maps.visualization.HeatmapLayer({
   data: heatPoints,
