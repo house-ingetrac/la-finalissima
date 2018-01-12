@@ -107,3 +107,6 @@ database works
 shakilR -- 2018-01-11 23:59
 added logout button
 
+michaelR -- 2018-01-12 12:50
+fixed background of login page - used cover size
+changed image on login page - png for clear background - may be changed later
