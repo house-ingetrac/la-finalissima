@@ -97,3 +97,6 @@ Having weird script error with 'google is not defined'
 The script error has something to do with the order that the scripts are declared (I think)
 Downloaded favicon and added to static/img
 
+shakilR -- 2018-01-11 21:18
+moved heatmap setup in a function to be called with initMap
+
