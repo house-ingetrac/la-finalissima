@@ -1,5 +1,6 @@
 import os
 from flask import Flask, render_template, request, redirect, url_for, session, flash
+from utils import db
 import urllib2, json
 
 
@@ -8,18 +9,66 @@ app.secret_key = os.urandom(32)
 
 @app.route('/')
 def root():
-    #if 'user' in session:
-    return render_template('map.html', title = "Map")
-    #else:
-     #   return render_template('home.html')
+    if 'user' in session:
+        return render_template('map.html', title = "Map")
+    else:
+        return render_template('home.html', title = "Home")
 
-@app.route('/login')
+@app.route('/login',methods=['GET', 'POST'])
 def login():
-    return render_template('login.html')
-
+    if 'user' in session:
+        return render_template('map.html', title = "Map")       
+    else:
+        return render_template('login.html')
+        
+@app.route('/create',methods=['GET', 'POST'])
+def create():
+    if 'user' in session:
+        return render_template('map.html', title = "Map")       
+    else:
+        users = db.getUsers()
+        print users
+        print request.form.get('user')
+        if request.form.get('user') in users:
+            flash("u can't pick that name")
+            return redirect(url_for('login'))              
+        if request.form.get('password') != request.form.get('confpass'):
+            print "password"
+            flash("Hey ur passwords are wrong")
+            return redirect(url_for('login'))
+        else:
+            db.addUser(request.form.get('user'), request.form.get('password'))
+            session['user'] = request.form.get('username')
+            return redirect(url_for('map'))     
+        
+@app.route('/auth',methods=['GET', 'POST'])
+def auth():
+    if 'user' in session:
+        return render_template('map.html', title = "Map")
+    else:
+        users = db.getUsers()
+        print users
+        print request.form.get('user')
+        if request.form.get('user') in users:
+            print "here:"
+            print users[request.form.get('user')]
+            if request.form.get('password') == users[request.form.get('user')]:
+                session['user'] = request.form.get('user')
+                return redirect(url_for('map'))
+            else:
+                flash ("thats not the right password")
+                return redirect(url_for('login'))
+        else:
+            flash ("that person doesnt exist")
+            return redirect(url_for('login'))
+    
+            
 @app.route('/map')
 def map():
-    return render_template('map.html', title = "Map")
+    if 'user' in session:
+        return render_template('map.html', title = "Map")
+    else:
+        return redirect(url_for('root'))
 
 if __name__ == '__main__':
     app.debug = True
