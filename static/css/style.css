@@ -1,5 +1,6 @@
 body {
     background-image: url('http://i.imgur.com/ro5bn3v.png');
+    background-size: cover;
 }
 
 /* always explicitly state dimensions of map div */
