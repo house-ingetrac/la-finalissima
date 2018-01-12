@@ -2,10 +2,10 @@
 
 {% block content %}
 <center>
-  <h1>Login/ Register</h1>
+  <h1><b>Login/ Register</b></h1>
   <div style="display: inline-block;">
     <form method="POST" action="/auth">
-      <b><u>Log in here:</b></u><br><br>
+      <h3><b><u>Log in here:</b></u></h3><br><br>
       <input type="text" name="user" placeholder="Username" required><br><br>
       <input type="password" name="password" placeholder="Password" required><br><br>
       <input class="btn" type="submit" value="Log In">
@@ -17,7 +17,7 @@
 
   <div style="display: inline-block;">
     <form action = '/create' method = 'POST'>
-      <b><u>Create account here:</b></u><br><br>
+      <h3><b><u>Create account here:</b></u></h3><br><br>
       <input type ="text" name="user" placeholder="Username" required><br><br>
       <input type = 'password' name = 'password' placeholder="Password" required><br><br>
       <input type = 'password' name = 'confpass' placeholder="Password" required><br><br>
