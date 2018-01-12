@@ -65,7 +65,7 @@ function initMap() {
     window.addEventListener('keydown', keyDownHandler);
     window.addEventListener('keyup', keyUpHandler);
     movement = setInterval(move, 25);
-    heater();
+    //heater();
 }
 
 function genRandPoints(numPoints, lat, long) {
@@ -96,7 +96,10 @@ function heater() {
         map: map,
         radius: 30
     });
-
+  var points = getPoints();
+  for (var i = 0; i < points.length; i ++) {
+    heatPoints.push(points[i]);
+  }
     heatmap.setMap(map);
 }
 
