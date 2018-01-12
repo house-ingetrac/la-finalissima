@@ -1,3 +1,7 @@
+body {
+    background-image: url('http://i.imgur.com/ro5bn3v.png');
+}
+
 /* always explicitly state dimensions of map div */
 #map {
   height: 600px;

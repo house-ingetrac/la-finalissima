@@ -2,25 +2,25 @@
 
 {% block content %}
 <center>
-  <div>
+  <h1>Login/ Register</h1>
+  <div style="display: inline-block;">
     <form method="POST" action="/auth">
       <b><u>Log in here:</b></u><br><br>
-      <input type="text" name="user" placeholder="Username"><br><br>
-      <input type="password" name="password" placeholder="Password"><br><br>
+      <input type="text" name="user" placeholder="Username" required><br><br>
+      <input type="password" name="password" placeholder="Password" required><br><br>
       <input class="btn" type="submit" value="Log In">
     </form>
 
-    <br><br>
-    <img style="width:200px;" src="http://piq.codeus.net/static/media/userpics/piq_24393_400x400.png">
-    <br><br>
   </div>
 
-  <div>
+  <img style="width:200px; margin: 20px;" src="http://piq.codeus.net/static/media/userpics/piq_24393_400x400.png">
+
+  <div style="display: inline-block;">
     <form action = '/create' method = 'POST'>
       <b><u>Create account here:</b></u><br><br>
       <input type ="text" name="user" placeholder="Username" required><br><br>
-      <input type = 'password' name = 'password' placeholder="Password"required><br><br>
-      <input type = 'password' name = 'confpass' placeholder="Password"required><br><br>
+      <input type = 'password' name = 'password' placeholder="Password" required><br><br>
+      <input type = 'password' name = 'confpass' placeholder="Password" required><br><br>
       <input class="btn"type='submit' value='Create Account' name='signup'>
     </form>
   </div>
