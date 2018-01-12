@@ -10,28 +10,34 @@ app.secret_key = os.urandom(32)
 @app.route('/')
 def root():
     if 'user' in session:
-        return render_template('map.html', title = "Map")
+        return redirect('/map')
     else:
-        return render_template('home.html', title = "Home")
+        return render_template('home.html', title = 'Home')
 
 @app.route('/login',methods=['GET', 'POST'])
 def login():
     if 'user' in session:
-        return render_template('map.html', title = "Map")       
+        return redirect('/')
     else:
-        return render_template('login.html')
-        
+        return render_template('login.html', title = 'Login')
+
+@app.route('/logout')
+def logout():
+    if 'user' in session:
+        session.pop('user')
+    return redirect('/')
+
 @app.route('/create',methods=['GET', 'POST'])
 def create():
     if 'user' in session:
-        return render_template('map.html', title = "Map")       
+        return redirect('/')
     else:
         users = db.getUsers()
         print users
         print request.form.get('user')
         if request.form.get('user') in users:
             flash("u can't pick that name")
-            return redirect(url_for('login'))              
+            return redirect(url_for('login'))
         if request.form.get('password') != request.form.get('confpass'):
             print "password"
             flash("Hey ur passwords are wrong")
@@ -39,34 +45,33 @@ def create():
         else:
             db.addUser(request.form.get('user'), request.form.get('password'))
             session['user'] = request.form.get('username')
-            return redirect(url_for('map'))     
-        
+            return redirect(url_for('map'))
+
 @app.route('/auth',methods=['GET', 'POST'])
 def auth():
     if 'user' in session:
-        return render_template('map.html', title = "Map")
+        return redirect('/')
     else:
         users = db.getUsers()
         print users
         print request.form.get('user')
         if request.form.get('user') in users:
-            print "here:"
+            print 'here:'
             print users[request.form.get('user')]
             if request.form.get('password') == users[request.form.get('user')]:
                 session['user'] = request.form.get('user')
                 return redirect(url_for('map'))
             else:
-                flash ("thats not the right password")
+                flash ('thats not the right password')
                 return redirect(url_for('login'))
         else:
-            flash ("that person doesnt exist")
+            flash ('that person doesnt exist')
             return redirect(url_for('login'))
-    
-            
+
 @app.route('/map')
 def map():
     if 'user' in session:
-        return render_template('map.html', title = "Map")
+        return render_template('map.html', title = 'Map')
     else:
         return redirect(url_for('root'))
 

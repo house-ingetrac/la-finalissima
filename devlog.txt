@@ -103,3 +103,7 @@ moved heatmap setup in a function to be called with initMap
 kellyW -- 2018-01-11 23:30
 login system works
 database works
+
+shakilR -- 2018-01-11 23:59
+added logout button
+
