@@ -110,3 +110,13 @@ added logout button
 michaelR -- 2018-01-12 12:50
 fixed background of login page - used cover size
 changed image on login page - png for clear background - may be changed later
+naotakaK -- 2018-01-16 22:19
+Encounters are fixed and are waiting for pokeAPI stuff to continue.
+- Walking near a heatmap spawns (or has a chance to spawn) an infoWindow with info about Pokemon. 
+After player has walked close enough to the heatmap, regardless of whether or not the infoWindow spawned,
+the player will not be able to encounter another pokemon in that same exact location.
+- One problem with this is that although pokemon will no longer spawn there, the points remain in the heatmap.
+This could be solved by using the pkmnLocations as the points for the heatmap and changing the radius, but could be ugly.
+- One thing that should probably be implemented is checking if the player walks away from the infoWindow and then close the infoWindow automatically.
+- Other things are mostly graphical, we still need to do the spawning points as the player moves around.
+
