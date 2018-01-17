@@ -18,7 +18,7 @@ $ git clone git@github.com:MRuvinshteyn/blubberduck.git
 
 3. Procure an API key for Google Maps from the following site:
 
-[GOOGLE MAPS API](https://developers.google.com/maps/documentation/javascript/)
+     [GOOGLE MAPS API](https://developers.google.com/maps/documentation/javascript/)
 
 4. Insert your key into the first line of key.txt.
 
