@@ -12,14 +12,14 @@ def root():
     if 'user' in session:
         return redirect('/map')
     else:
-        return render_template('home.html', title = 'Home')
+        return render_template('home.html', title = 'Home', log = 'false')
 
 @app.route('/login',methods=['GET', 'POST'])
 def login():
     if 'user' in session:
         return redirect('/')
     else:
-        return render_template('login.html', title = 'Login')
+        return render_template('login.html', title = 'Login', log = 'false')
 
 @app.route('/logout')
 def logout():
@@ -71,7 +71,7 @@ def auth():
 @app.route('/map')
 def map():
     if 'user' in session:
-        return render_template('map.html', title = 'Map')
+        return render_template('map.html', title = 'Map', log = 'true')
     else:
         return redirect(url_for('root'))
 
