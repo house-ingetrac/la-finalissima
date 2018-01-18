@@ -124,3 +124,5 @@ naotakaK -- 2018-01-17 23:24
 Encountering pokemon now deletes point from the heatmap.
 Still need to work on auto closing infoWindow based on player distance from the window.
 
+kellyW -- 2018-01-18 13:00
+finished navbar
