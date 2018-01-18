@@ -67,12 +67,13 @@ function initMap() {
     zoomControl: false,
     disableDefaultUI: true
   });
-  heatPoints = new google.maps.MVCArray(heatLocations);
+  pkmnLocations = new google.maps.MVCArray(heatLocations);
   heatmap = new google.maps.visualization.HeatmapLayer({
-    data: heatPoints,
+    data: pkmnLocations,
     map: map,
-    radius: 30
+    radius: 70
   });
+  heatmap.setMap(map);
   window.addEventListener('keydown', keyDownHandler);
   window.addEventListener('keyup', keyUpHandler);
   movement = setInterval(move, 25);
@@ -104,11 +105,15 @@ function getPoints() {
 }
 
 function heater() {
+  /***
   var points = getPoints();
   for (var i = 0; i < points.length; i ++) {
     heatPoints.push(points[i]);
   }
-  heatmap.setMap(map);
+   ***/
+  var point = new google.maps.LatLng(40.76, -73.99);
+  //heatPoints.push(point);
+  pkmnLocations.push(point);
 }
 
 /***
@@ -118,11 +123,11 @@ function heater() {
  If not, -1 is returned.
 ***/
 function closeEnough() {
-  for (var i = 0; i < pkmnLocations.length; i ++) {
+  for (var i = 0; i < pkmnLocations.getLength(); i ++) {
     if (google.maps.geometry.spherical.computeDistanceBetween(map.getCenter(),
-                                                              pkmnLocations[i]) < 50) {
-      var loc = pkmnLocations[i];
-      pkmnLocations.splice(i, 1);
+                                                              pkmnLocations.getAt(i)) < 50) {
+      var loc = pkmnLocations.getAt(i);
+      pkmnLocations.removeAt(i);
       return loc;
     }
   }
@@ -154,5 +159,10 @@ function encounter() {
     });
     infoWindow.setPosition(dist);
     infoWindow.open(map);
+    if (google.maps.geometry.spherical.computeDistanceBetween(map.getCenter(),
+                                                              dist) > 50) {
+      console.log("A");
+      infoWindow.close(); 
+    }
   }
 }

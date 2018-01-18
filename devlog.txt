@@ -120,3 +120,7 @@ This could be solved by using the pkmnLocations as the points for the heatmap an
 - One thing that should probably be implemented is checking if the player walks away from the infoWindow and then close the infoWindow automatically.
 - Other things are mostly graphical, we still need to do the spawning points as the player moves around.
 
+naotakaK -- 2018-01-17 23:24
+Encountering pokemon now deletes point from the heatmap.
+Still need to work on auto closing infoWindow based on player distance from the window.
+
