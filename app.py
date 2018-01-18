@@ -1,8 +1,6 @@
-import os
+import os, urllib2, json, random, pokebase
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from utils import db
-import urllib2, json
-
 
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
@@ -12,14 +10,14 @@ def root():
     if 'user' in session:
         return redirect('/map')
     else:
-        return render_template('home.html', title = 'Home', log = 'false')
+        return render_template('home.html', title = 'Home', log = False)
 
 @app.route('/login',methods=['GET', 'POST'])
 def login():
     if 'user' in session:
         return redirect('/')
     else:
-        return render_template('login.html', title = 'Login', log = 'false')
+        return render_template('login.html', title = 'Login', log = False)
 
 @app.route('/logout')
 def logout():
@@ -70,10 +68,20 @@ def auth():
 
 @app.route('/map')
 def map():
+    print session['user'];
     if 'user' in session:
-        return render_template('map.html', title = 'Map', log = 'true')
+        return render_template('map.html', title = 'Map', log = True)
     else:
         return redirect(url_for('root'))
+
+@app.route('/load_encounter')
+def load_encounter():
+    dexnum = random.randint(1, 500)
+    pokemon = pokebase.pokemon(dexnum)
+    pokedict = {}
+    pokedict['name'] = pokemon.name.encode('ascii', 'ignore')
+    pokedict['sprite'] = pokemon.sprites.front_default.encode('ascii', 'ignore')
+    return pokedict.__str__()
 
 if __name__ == '__main__':
     app.debug = True

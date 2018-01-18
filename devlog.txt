@@ -110,6 +110,7 @@ added logout button
 michaelR -- 2018-01-12 12:50
 fixed background of login page - used cover size
 changed image on login page - png for clear background - may be changed later
+
 naotakaK -- 2018-01-16 22:19
 Encounters are fixed and are waiting for pokeAPI stuff to continue.
 - Walking near a heatmap spawns (or has a chance to spawn) an infoWindow with info about Pokemon. 
@@ -124,9 +125,13 @@ naotakaK -- 2018-01-17 23:24
 Encountering pokemon now deletes point from the heatmap.
 Still need to work on auto closing infoWindow based on player distance from the window.
 
+kellyW -- 2018-01-18 13:00
+finished navbar
+
 naotakaK -- 2018-01-18 18:49
 Fixed heatmap spawning, removal of infoWindows.
 - Added comments for all functions
 - Need to do ajax
 - heatmaps spawn around player as player moves
+
 
