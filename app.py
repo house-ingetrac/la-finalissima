@@ -1,8 +1,6 @@
-import os
+import os, urllib2, json, random, pokebase
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from utils import db
-import urllib2, json
-
 
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
@@ -74,6 +72,15 @@ def map():
         return render_template('map.html', title = 'Map', log = 'true')
     else:
         return redirect(url_for('root'))
+
+@app.route('/load_encounter')
+def load_encounter():
+    dexnum = random.randint(1, 500)
+    pokemon = pokebase.pokemon(dexnum)
+    pokedict = {}
+    pokedict['name'] = pokemon.name.encode('ascii', 'ignore')
+    pokedict['sprite'] = pokemon.sprites.front_default.encode('ascii', 'ignore')
+    return pokedict.__str__()
 
 if __name__ == '__main__':
     app.debug = True
