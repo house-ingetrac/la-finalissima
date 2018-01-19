@@ -142,3 +142,7 @@ Started ajax stuff
 - fixed permissions for favicon
 - downloaded background image and adjusted css accordingly
 
+naotakaK -- 2018-01-19 18:35
+ajax still broken
+- added running sprite, need to figure out how to change element in DOM
+

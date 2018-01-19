@@ -6,6 +6,7 @@ var heatLocations = [];
 
 var pkmn = [];
 
+/***
 function getPkmn(e) {
   console.log("PKMN");
   eval('pkmn.push(' + e + ');');
@@ -13,7 +14,8 @@ function getPkmn(e) {
 }
 
 $.get('/load_encounter', getPkmn());
-
+***/
+ 
 /***
  Main movement function that loops forever. Moves map on movement, checks for position
  updates to spawn new points on heatmap, checks if player has walked away from
@@ -21,36 +23,38 @@ $.get('/load_encounter', getPkmn());
 ***/
 function move() {
 
-    //moving map around
-    loc.lat = map.getCenter().lat();
-    loc.lng = map.getCenter().lng();
-    loc.lat += dir.lat;
-    loc.lng += dir.lng;
-    map.panTo(loc);
+  //moving map around
+  loc.lat = map.getCenter().lat();
+  loc.lng = map.getCenter().lng();
+  loc.lat += dir.lat;
+  loc.lng += dir.lng;
+  map.panTo(loc);
 
-    encounter(); //checking if player has walked over heatmap
+  encounter(); //checking if player has walked over heatmap
+  
+  //checking if player has walked away enough to spawn new heatmap points, if so, spawns
+  if (google.maps.geometry.spherical.computeDistanceBetween(
+    map.getCenter(), lastLoc) > 500) {
+    console.log("lastLoc");
+    lastLoc = map.getCenter();
+    spawnHeatmaps();
+  }
 
-    //checking if player has walked away enough to spawn new heatmap points, if so, spawns
-    if (google.maps.geometry.spherical.computeDistanceBetween(
-      map.getCenter(), lastLoc) > 500) {
-      console.log("lastLoc");
-      lastLoc = map.getCenter();
-      spawnHeatmaps();
-    }
-
-    //checking to see if player has walked away from an open infoWindow and closes it
-    if (infoWindow != null && google.maps.geometry.spherical.computeDistanceBetween(
-      map.getCenter(), infoWindow.position) > 100) {
-      console.log("A");
-      infoWindow.close();
-      infoWindow = null;
-    }
+  //checking to see if player has walked away from an open infoWindow and closes it
+  if (infoWindow != null && google.maps.geometry.spherical.computeDistanceBetween(
+    map.getCenter(), infoWindow.position) > 100) {
+    console.log("A");
+    infoWindow.close();
+    infoWindow = null;
+  }
 }
 
 /***
  Movement functions
 ***/
 function keyDownHandler(e) {
+  console.log("AAA");
+  //document.getElementById("map:after").style.background = "url('/static/img/run.gif')";
   switch (e.keyCode) {
   case 37:
     dir.lng = -0.00005;
@@ -71,6 +75,8 @@ function keyDownHandler(e) {
  Movement functions
 ***/
 function keyUpHandler(e) {
+  
+  //document.getElementById("map").style.background = "url('/static/img/player_sprite.png')";
   switch (e.keyCode) {
   case 37:
     dir.lng = 0;
@@ -186,9 +192,9 @@ function encounter() {
   if (dist != -1) { //&& Math.random() < .5) {
 
     //set content of infoWindow with sprite, pkmn name
-    var newPkmn = pkmn.pop();
-    var contentString = newPkmn.name;
-    var sprite = newPkmn.sprite;
+    //var newPkmn = pkmn.pop();
+    var contentString = "test"; //= newPkmn.name;
+    var sprite = "../img/icon.png"; //newPkmn.sprite;
     infoWindow = new google.maps.InfoWindow({
       content:
         "<div style='float:left'><img src='" +
