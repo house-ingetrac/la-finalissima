@@ -135,3 +135,10 @@ Fixed heatmap spawning, removal of infoWindows.
 - heatmaps spawn around player as player moves
 
 
+naotakaK -- 2018-01-19 14:33
+Started ajax stuff
+- need to fix infoWindow removal when 2 or more spawn
+- need to fix ajax, calling fxn too many times
+- fixed permissions for favicon
+- downloaded background image and adjusted css accordingly
+

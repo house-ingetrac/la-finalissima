@@ -1,8 +1,18 @@
-var map, heatmap, infoWindow, loc, dir, movement, lastLoc, nextPkmn;
+var map, heatmap, infoWindow, loc, dir, movement, lastLoc;
 var mapDiv = document.getElementById('map');
 
 var pkmnLocations;
 var heatLocations = [];
+
+var pkmn = [];
+
+function getPkmn(e) {
+  console.log("PKMN");
+  eval('pkmn.push(' + e + ');');
+  $.get('/load_encounter', getPkmn());
+}
+
+$.get('/load_encounter', getPkmn());
 
 /***
  Main movement function that loops forever. Moves map on movement, checks for position
@@ -176,8 +186,9 @@ function encounter() {
   if (dist != -1) { //&& Math.random() < .5) {
 
     //set content of infoWindow with sprite, pkmn name
-    var contentString = "Filler stuff for now";
-    var sprite = "http://www.stuycs.org/_/rsrc/1506974930674/config/customLogo.gif?revision=2";
+    var newPkmn = pkmn.pop();
+    var contentString = newPkmn.name;
+    var sprite = newPkmn.sprite;
     infoWindow = new google.maps.InfoWindow({
       content:
         "<div style='float:left'><img src='" +
