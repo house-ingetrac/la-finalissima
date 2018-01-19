@@ -21,30 +21,30 @@ $.get('/load_encounter', getPkmn());
 ***/
 function move() {
 
-  //moving map around
-  loc.lat = map.getCenter().lat();
-  loc.lng = map.getCenter().lng();
-  loc.lat += dir.lat;
-  loc.lng += dir.lng;
-  map.panTo(loc);
+    //moving map around
+    loc.lat = map.getCenter().lat();
+    loc.lng = map.getCenter().lng();
+    loc.lat += dir.lat;
+    loc.lng += dir.lng;
+    map.panTo(loc);
 
-  encounter(); //checking if player has walked over heatmap
+    encounter(); //checking if player has walked over heatmap
 
-  //checking if player has walked away enough to spawn new heatmap points, if so, spawns
-  if (google.maps.geometry.spherical.computeDistanceBetween(
-    map.getCenter(), lastLoc) > 500) {
-    console.log("lastLoc");
-    lastLoc = map.getCenter();
-    spawnHeatmaps();
-  }
+    //checking if player has walked away enough to spawn new heatmap points, if so, spawns
+    if (google.maps.geometry.spherical.computeDistanceBetween(
+      map.getCenter(), lastLoc) > 500) {
+      console.log("lastLoc");
+      lastLoc = map.getCenter();
+      spawnHeatmaps();
+    }
 
-  //checking to see if player has walked away from an open infoWindow and closes it
-  if (infoWindow != null && google.maps.geometry.spherical.computeDistanceBetween(
-    map.getCenter(), infoWindow.position) > 100) {
-    console.log("A");
-    infoWindow.close();
-    infoWindow = null;
-  }
+    //checking to see if player has walked away from an open infoWindow and closes it
+    if (infoWindow != null && google.maps.geometry.spherical.computeDistanceBetween(
+      map.getCenter(), infoWindow.position) > 100) {
+      console.log("A");
+      infoWindow.close();
+      infoWindow = null;
+    }
 }
 
 /***
@@ -94,7 +94,7 @@ function keyUpHandler(e) {
 function initMap() {
   loc = {lat: 40.758896, lng: -73.985130}; //times square
   dir = {lat: 0, lng: 0};
-  
+    
   //initializing map with controls, etc.
   map = new google.maps.Map(mapDiv, {
     zoom: 17,
@@ -105,7 +105,7 @@ function initMap() {
     zoomControl: false,
     disableDefaultUI: true
   });
-
+  
   //initializing array for heatmap and heatmap
   pkmnLocations = new google.maps.MVCArray(heatLocations);
   heatmap = new google.maps.visualization.HeatmapLayer({
@@ -114,11 +114,11 @@ function initMap() {
     radius: 70
   });
   heatmap.setMap(map);
-
+  
   //listening for arrow keys for movement
   window.addEventListener('keydown', keyDownHandler);
   window.addEventListener('keyup', keyUpHandler);
-
+  
   lastLoc = map.getCenter(); //setting location to track when to spawn points
   movement = setInterval(move, 25); //looping function
 }
@@ -128,7 +128,7 @@ function initMap() {
  direction/radius around the player.
 ***/
 function spawnHeatmaps() {
-  
+    
   //choosing random number of points
   var numPoints = Math.floor(Math.random() * 10);
   console.log("spawn");
@@ -145,7 +145,7 @@ function spawnHeatmaps() {
     if (yHeading < .5) yHeading = -1;
     else yHeading = 1;
 
-    //adding point to pkmnLocations, which will update heatmap
+    //adding point // TODO: o pkmnLocations, which will update heatmap
     console.log("xHead " + xHeading + " yHead " + yHeading + " randDist " + randDist);
     var point = new google.maps.LatLng(map.getCenter().lat() +(xHeading * randDist),
                                        map.getCenter().lng() + (yHeading * randDist));

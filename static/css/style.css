@@ -1,7 +1,11 @@
 body {
     background-image: url('../img/background.png');
     background-size: cover;
+    &:after{
+	background-opacity: 0.5;
+    }
 }
+
 
 /* always explicitly state dimensions of map div */
 #map {

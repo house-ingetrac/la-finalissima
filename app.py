@@ -68,7 +68,6 @@ def auth():
 
 @app.route('/map')
 def map():
-    print session['user'];
     if 'user' in session:
         return render_template('map.html', title = 'Map', log = True)
     else:
