@@ -1,7 +1,8 @@
 var map, heatmap, infoWindow, loc, dir, movement, lastLoc, nextPkmn;
 var mapDiv = document.getElementById('map');
 
-var pkmnLocations = [];
+var pkmnLocations;
+var heatLocations = [];
 
 /***
  Main movement function that loops forever. Moves map on movement, checks for position
@@ -34,14 +35,6 @@ function move() {
     infoWindow.close();
     infoWindow = null;
   }
-
-  /***
-  if (nextPkmn == null) {
-    $.ajax({
-      url: ''
-    })
-  }
-   ***/
 }
 
 /***
