@@ -2,6 +2,22 @@ var map, heatmap, infoWindow, loc, dir, movement, lastLoc, nextPkmn;
 var mapDiv = document.getElementById('map');
 
 var pkmnLocations = [];
+var heatLocations = [];
+
+pokemon = [];
+function addpkmn(e) {
+    if (e) {
+        eval('pokemon.push(' + e + ');');
+        console.log('loaded pokemon');
+    }
+    if (pokemon.length > 10) {
+        console.log('10 pokemon are already loaded');
+        setTimeout(1000, addpkmn);
+    } else {
+        $.get('/load_encounter', addpkmn);
+    }
+}
+addpkmn();
 
 /***
  Main movement function that loops forever. Moves map on movement, checks for position
@@ -34,14 +50,6 @@ function move() {
     infoWindow.close();
     infoWindow = null;
   }
-
-  /***
-  if (nextPkmn == null) {
-    $.ajax({
-      url: ''
-    })
-  }
-   ***/
 }
 
 /***
@@ -183,8 +191,9 @@ function encounter() {
   if (dist != -1) { //&& Math.random() < .5) {
 
     //set content of infoWindow with sprite, pkmn name
-    var contentString = "Filler stuff for now";
-    var sprite = "http://www.stuycs.org/_/rsrc/1506974930674/config/customLogo.gif?revision=2";
+    var spawn = pokemon.pop();
+    var contentString = spawn.name;
+    var sprite = spawn.sprite;
     infoWindow = new google.maps.InfoWindow({
       content:
         "<div style='float:left'><img src='" +
