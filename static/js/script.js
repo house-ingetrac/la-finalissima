@@ -10,11 +10,11 @@ function addpkmn(e) {
         eval('pkmn.push(' + e + ');');
         console.log('loaded pokemon');
     }
-    //dont load more than 10 pokemon
+    //dont load more than 20 pokemon
     if (pkmn.length > 20) {
         console.log('20 pokemon are already loaded');
-        //wait 1 second before checking again
-        setTimeout(1000, addpkmn);
+        //wait 3 seconds before checking again
+        setTimeout(addpkmn, 3000);
     } else {
         $.get('/load_encounter', addpkmn);
     }
