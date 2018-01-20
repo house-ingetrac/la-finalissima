@@ -146,3 +146,6 @@ naotakaK -- 2018-01-19 18:35
 ajax still broken
 - added running sprite, need to figure out how to change element in DOM
 
+shakilR -- 2018-01-19 20:41
+fixed ajax with encounters and closing extra infowindows
+
