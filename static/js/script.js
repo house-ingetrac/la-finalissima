@@ -202,6 +202,9 @@ function encounter() {
             contentString = "Just grass";
             sprite = "/static/img/grass.png";
         }
+        if (infoWindow) {
+            infoWindow.close();
+        }
         infoWindow = new google.maps.InfoWindow({
             content:
             "<div style='float:left'>" +
