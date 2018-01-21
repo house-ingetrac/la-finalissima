@@ -149,3 +149,7 @@ ajax still broken
 shakilR -- 2018-01-19 20:41
 fixed ajax with encounters and closing extra infowindows
 
+naotakaK -- 2018-01-21 01:23
+Running player sprite works now
+- size needs to be edited to be the same as regular player sprite
+

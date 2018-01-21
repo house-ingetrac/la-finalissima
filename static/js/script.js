@@ -5,6 +5,7 @@ var pkmnLocations = [];
 var heatLocations = [];
 
 var pkmn = [];
+
 function addpkmn(e) {
     if (e) {
         eval('pkmn.push(' + e + ');');
@@ -57,19 +58,24 @@ function move() {
  Movement functions
  ***/
 function keyDownHandler(e) {
-    console.log("AAA");
-    //document.getElementById("map:after").style.background = "url('/static/img/run.gif')";
+  console.log("AAA");
+  
+  //console.log(document.getElementById("map").style);
     switch (e.keyCode) {
         case 37:
+            document.head.appendChild(document.createElement("style")).innerHTML = "#map:after {background-image: url('/static/img/run.gif');}";
             dir.lng = -0.00005;
             break;
         case 38:
+            document.head.appendChild(document.createElement("style")).innerHTML = "#map:after {background-image: url('/static/img/run.gif');}";
             dir.lat = 0.00005;
             break;
         case 39:
+            document.head.appendChild(document.createElement("style")).innerHTML = "#map:after {background-image: url('/static/img/run.gif');}";
             dir.lng = 0.00005;
             break;
         case 40:
+            document.head.appendChild(document.createElement("style")).innerHTML = "#map:after {background-image: url('/static/img/run.gif');}";
             dir.lat = -0.00005;
             break;
     }
@@ -79,18 +85,21 @@ function keyDownHandler(e) {
  Movement functions
  ***/
 function keyUpHandler(e) {
-    //document.getElementById("map").style.background = "url('/static/img/player_sprite.png')";
     switch (e.keyCode) {
         case 37:
+            document.head.appendChild(document.createElement("style")).innerHTML = "#map:after {background-image: url('/static/img/player_sprite.png');}";
             dir.lng = 0;
             break;
         case 38:
+            document.head.appendChild(document.createElement("style")).innerHTML = "#map:after {background-image: url('/static/img/player_sprite.png');}";
             dir.lat = 0;
             break;
         case 39:
+            document.head.appendChild(document.createElement("style")).innerHTML = "#map:after {background-image: url('/static/img/player_sprite.png');}";
             dir.lng = 0;
             break;
         case 40:
+            document.head.appendChild(document.createElement("style")).innerHTML = "#map:after {background-image: url('/static/img/player_sprite.png');}";
             dir.lat = 0;
             break;
     }
