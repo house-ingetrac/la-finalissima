@@ -6,6 +6,10 @@ var heatLocations = [];
 
 var pkmn = [];
 
+/***
+ Loads pokemon from /load_encounter, which loads from pokebase. After 20 pokemon are
+ added, waits until there is <20 pokemon loaded before getting new pokemon.
+***/
 function addpkmn(e) {
     if (e) {
         eval('pkmn.push(' + e + ');');
@@ -40,7 +44,6 @@ function move() {
     //checking if player has walked away enough to spawn new heatmap points, if so, spawns
     if (google.maps.geometry.spherical.computeDistanceBetween(
         map.getCenter(), lastLoc) > 500) {
-        console.log("lastLoc");
         lastLoc = map.getCenter();
         spawnHeatmaps();
     }
@@ -48,19 +51,15 @@ function move() {
     //checking to see if player has walked away from an open infoWindow and closes it
     if (infoWindow != null && google.maps.geometry.spherical.computeDistanceBetween(
         map.getCenter(), infoWindow.position) > 100) {
-        console.log("A");
         infoWindow.close();
         infoWindow = null;
     }
 }
 
 /***
- Movement functions
+ Movement functions, on keyDown changes player sprite to running sprite
  ***/
 function keyDownHandler(e) {
-  console.log("AAA");
-  
-  //console.log(document.getElementById("map").style);
     switch (e.keyCode) {
         case 37:
             document.head.appendChild(document.createElement("style")).innerHTML = "#map:after {background-image: url('/static/img/run.gif');}";
@@ -82,7 +81,7 @@ function keyDownHandler(e) {
 }
 
 /***
- Movement functions
+ Movement functions, on keyUp changes player sprite back to stopped sprite
  ***/
 function keyUpHandler(e) {
     switch (e.keyCode) {
@@ -162,7 +161,7 @@ function spawnHeatmaps() {
         if (yHeading < .5) yHeading = -1;
         else yHeading = 1;
 
-        //adding point // TODO: o pkmnLocations, which will update heatmap
+        //adding point
         console.log("xHead " + xHeading + " yHead " + yHeading + " randDist " + randDist);
         var point = new google.maps.LatLng(map.getCenter().lat() +(xHeading * randDist),
             map.getCenter().lng() + (yHeading * randDist));
@@ -194,24 +193,25 @@ function closeEnough(){
  Spawns InfoWindow objects at locations of Pokemon.
  Calls closeEnough() to see if the player is close to a heatmap/Pokemon location, if
  closeEnough() returns a location, then there is a chance of the InfoWindow spawning.
- The InfoWindow contains an image of the Pokemon encountered as well as a brief
- description, and a link to capture the Pokemon.
+ The InfoWindow contains an image of the Pokemon encountered as well as name of pokemon
+ and a link to capture the Pokemon.
  ***/
 function encounter() {
     var dist = closeEnough(); //check to see if player is closeEnough to any pkmn
-    if (dist != -1) { //&& Math.random() < .5) {
+    if (dist != -1) {
 
         //set content of infoWindow with sprite, pkmn name
-        var spawn = pkmn.pop();
+        var spawn = pkmn.pop(); //pop pokemon from list of loaded pokemon
         var contentString, sprite;
-        if (spawn) {
-            contentString = spawn.name;
+        if (spawn && Math.random() < .5) { //if there are pokemon and within %chance
+            contentString = "You found:<br>" + spawn.name[0].toUpperCase() +
+                            spawn.name.substr(1); //capitalize pokemon name
             sprite = spawn.sprite;
-        } else {
+        } else { //no pokemon
             contentString = "Just grass";
             sprite = "/static/img/grass.png";
         }
-        if (infoWindow) {
+        if (infoWindow) { //if there is already an infoWindow open
             infoWindow.close();
         }
         infoWindow = new google.maps.InfoWindow({
@@ -221,7 +221,7 @@ function encounter() {
             "<div style='float:right; padding: 10px;'>" +
             "<h4>" + contentString + "</h4></div>"
         });
-        infoWindow.setPosition(dist); //set position of infoWindow on hetmap point
+        infoWindow.setPosition(dist); //set position of infoWindow on heatmap point
         infoWindow.open(map); //display infoWindow
     }
 }

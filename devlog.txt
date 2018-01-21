@@ -153,3 +153,6 @@ naotakaK -- 2018-01-21 01:23
 Running player sprite works now
 - size needs to be edited to be the same as regular player sprite
 
+naotakaK -- 2018-01-21 11:51
+Minor infoWindow fix & commenting
+
