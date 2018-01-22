@@ -159,3 +159,6 @@ Minor infoWindow fix & commenting
 shakilR -- 2018-01-22 16:35
 spawns pokemon weighted by rarity (20% chance of a common pokemon spawning down to 2% chance of a super rare pokemon spawning)
 
+shakilR -- 2018-01-22 18:08
+fixed gif size while moving and changed sprite updating mechanism to css selectors
+

@@ -57,27 +57,35 @@ function move() {
 }
 
 /***
+ Changes sprite by changing sprite via attribute which CSS handles using selectors
+ ***/
+function updateSprite() {
+    if (dir.lat == 0 && dir.lng == 0) {
+        mapDiv.setAttribute("state", "standing");
+    } else {
+        mapDiv.setAttribute("state", "running");
+    }
+}
+
+/***
  Movement functions, on keyDown changes player sprite to running sprite
  ***/
 function keyDownHandler(e) {
     switch (e.keyCode) {
         case 37:
-            document.head.appendChild(document.createElement("style")).innerHTML = "#map:after {background-image: url('/static/img/run.gif');}";
             dir.lng = -0.00005;
             break;
         case 38:
-            document.head.appendChild(document.createElement("style")).innerHTML = "#map:after {background-image: url('/static/img/run.gif');}";
             dir.lat = 0.00005;
             break;
         case 39:
-            document.head.appendChild(document.createElement("style")).innerHTML = "#map:after {background-image: url('/static/img/run.gif');}";
             dir.lng = 0.00005;
             break;
         case 40:
-            document.head.appendChild(document.createElement("style")).innerHTML = "#map:after {background-image: url('/static/img/run.gif');}";
             dir.lat = -0.00005;
             break;
     }
+    updateSprite();
 }
 
 /***
@@ -86,22 +94,19 @@ function keyDownHandler(e) {
 function keyUpHandler(e) {
     switch (e.keyCode) {
         case 37:
-            document.head.appendChild(document.createElement("style")).innerHTML = "#map:after {background-image: url('/static/img/player_sprite.png');}";
             dir.lng = 0;
             break;
         case 38:
-            document.head.appendChild(document.createElement("style")).innerHTML = "#map:after {background-image: url('/static/img/player_sprite.png');}";
             dir.lat = 0;
             break;
         case 39:
-            document.head.appendChild(document.createElement("style")).innerHTML = "#map:after {background-image: url('/static/img/player_sprite.png');}";
             dir.lng = 0;
             break;
         case 40:
-            document.head.appendChild(document.createElement("style")).innerHTML = "#map:after {background-image: url('/static/img/player_sprite.png');}";
             dir.lat = 0;
             break;
     }
+    updateSprite();
 }
 
 /***
@@ -203,7 +208,7 @@ function encounter() {
         //set content of infoWindow with sprite, pkmn name
         var spawn = pkmn.pop(); //pop pokemon from list of loaded pokemon
         var contentString, sprite;
-        if (spawn && Math.random() < .5) { //if there are pokemon and within %chance
+        if (spawn && Math.random() < .6) { //if there are pokemon and within %chance
             contentString = "You found:<br>" + spawn.name[0].toUpperCase() +
                             spawn.name.substr(1); //capitalize pokemon name
             sprite = spawn.sprite;

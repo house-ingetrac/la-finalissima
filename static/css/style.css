@@ -28,6 +28,16 @@ body {
   pointer-events: none;
 }
 
+#map[state="standing"]:after {
+  background: url('/static/img/player_sprite.png');
+  background-size: 40px 50px;
+}
+
+#map[state="running"]:after {
+  background: url('/static/img/run.gif');
+  background-size: 40px 50px;
+}
+
 #floating-panel {
   position: absolute;
   top: 10px;
