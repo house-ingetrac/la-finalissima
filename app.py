@@ -75,14 +75,17 @@ def map():
 
 @app.route('/load_encounter')
 def load_encounter():
-    dexnum = random.randint(1, 500)
-    pokemon = pokebase.pokemon(dexnum)
+    rarity_list = [1]*10 + [2]*9 + [3]*8 + [4]*7 + [5]*6 + [6]*5 + [7]*4 + [8]*3 + [9]*2 + [10]
+    rarity = random.choice(rarity_list)
+    pokemon_choice = db.getPokemonWithRarity(rarity)
+    pokemon = pokebase.pokemon(pokemon_choice[0])
     pokedict = {}
     pokedict['name'] = pokemon.name.encode('ascii', 'ignore')
     pokedict['sprite'] = pokemon.sprites.front_default.encode('ascii', 'ignore')
     return pokedict.__str__()
 
 if __name__ == '__main__':
+    db.initDB()
     app.debug = True
     app.run()
 

@@ -156,3 +156,6 @@ Running player sprite works now
 naotakaK -- 2018-01-21 11:51
 Minor infoWindow fix & commenting
 
+shakilR -- 2018-01-22 16:35
+spawns pokemon weighted by rarity (20% chance of a common pokemon spawning down to 2% chance of a super rare pokemon spawning)
+
