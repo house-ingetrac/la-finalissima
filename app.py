@@ -87,14 +87,19 @@ def map():
 @app.route('/profile')
 def profile():
     if 'user' in session:
-        raw_pokemon = db.getPokemon('user')
+        raw_pokemon = db.getPokemon(session['user'])
         pokemon = []
         for key in raw_pokemon:
             pokedata = pokebase.pokemon( int(key)+1)
             this_pokemon = {}
             this_pokemon['sprite'] = pokedata.sprites.front_default.encode('ascii', 'ignore')
             this_pokemon['id'] = pokedata.id
-            this_pokemon['name'] = pokedata.name.encode('ascii', 'ignore')
+            this_pokemon['name'] = pokedata.name.encode('ascii', 'ignore').title()
+            this_pokemon['type1'] = pokedata.types[0].type.name.title()
+            if len(pokedata.types) > 1:
+                this_pokemon['type2'] = pokedata.types[1].type.name.title()
+            else:
+                this_pokemon['type2'] = ''
             if raw_pokemon[key] == '1':
                 this_pokemon['caught'] = False
             else:

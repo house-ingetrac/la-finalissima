@@ -52,11 +52,13 @@ def getUsers():
     return users
 
 def getPokemon(usern):
+    # print "Getting pokemon for %s" % usern
     db = sqlite3.connect("data/databases.db")
     c = db.cursor()
     a = 'SELECT pokemon FROM users WHERE users.user ="'+ usern + '"'
     x = c.execute(a)
     raw_pokemon = x.fetchone()[0]
+    # print raw_pokemon
     pokemon = {}
     for pokemon_id, c in enumerate(raw_pokemon):
         if c != '0':

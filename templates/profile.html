@@ -9,6 +9,8 @@
         <td>Pokedex #</td>
         <td>Name</td>
         <td>Sprite</td>
+        <td>Primary Type</td>
+        <td>Secondary Type</td>
         <td>Caught?</td>
       </tr>
     {% for pkmn in pokemon %}
@@ -16,6 +18,8 @@
       <td>{{ pkmn.id }}</td>
       <td>{{ pkmn.name }}</td>
       <td><img src="{{ pkmn.sprite }}" width="200px" alt="whodis"></td>
+      <td>{{ pkmn.type1 }}</td>
+      <td>{{ pkmn.type2 }}</td>
       <td>
         {% if pkmn.caught %}
         Yes

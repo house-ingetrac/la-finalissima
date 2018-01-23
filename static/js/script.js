@@ -210,7 +210,6 @@ function closeEnough(){
 function encounter() {
     var dist = closeEnough(); //check to see if player is closeEnough to any pkmn
     if (dist != -1) {
-
         //set content of infoWindow with sprite, pkmn name
         var spawn = pkmn.pop(); //pop pokemon from list of loaded pokemon
         var contentString, sprite, link;
@@ -221,7 +220,8 @@ function encounter() {
             link = "<a href='/capture'>Catch this pokemon</a></div>";
             link += "<br>(Press Enter)"
             spawnedPokemon = true;
-        } else { //no pokemon
+        } else {
+            //no pokemon
             contentString = "Just grass";
             sprite = "/static/img/grass.png";
             link = "";
