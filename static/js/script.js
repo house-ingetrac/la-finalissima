@@ -151,8 +151,8 @@ function initMap() {
  ***/
 function spawnHeatmaps() {
     //choosing random number of points
-    var numPoints = Math.floor(Math.random() * 10);
-    console.log("spawn");
+    var numPoints = Math.floor(Math.random() * 7);
+    console.log("spawning heatmaps");
 
     //adding points
     for (var i = 0; i < numPoints; i ++) {
@@ -167,7 +167,7 @@ function spawnHeatmaps() {
         else yHeading = 1;
 
         //adding point
-        console.log("xHead " + xHeading + " yHead " + yHeading + " randDist " + randDist);
+        //console.log("xHead " + xHeading + " yHead " + yHeading + " randDist " + randDist);
         var point = new google.maps.LatLng(map.getCenter().lat() +(xHeading * randDist),
             map.getCenter().lng() + (yHeading * randDist));
         pkmnLocations.push(point);

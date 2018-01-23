@@ -162,3 +162,7 @@ spawns pokemon weighted by rarity (20% chance of a common pokemon spawning down 
 shakilR -- 2018-01-22 18:08
 fixed gif size while moving and changed sprite updating mechanism to css selectors
 
+shakilR -- 2018-01-22 19:41
+downloaded Google Maps API script and sourced it
+set background div for login
+

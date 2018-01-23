@@ -2,62 +2,72 @@ body {
     background-image: url('../img/background.png');
     background-size: cover;
     &:after{
-	background-opacity: 0.5;
+        background-opacity: 0.5;
     }
 }
 
 
 /* always explicitly state dimensions of map div */
 #map {
-  height: 600px;
-  width: 800px;
-  position: relative;
+    height: 650px;
+    width: 1000px;
+    position: relative;
 }
 
 #map:after {
-  width: 40px;
-  height: 50px;
-  display: block;
-  content: ' ';
-  position: absolute;
-  top: 50%; 
-  left: 50%;
-  margin: -40px 0 0 -11px;
-  background: url('/static/img/player_sprite.png');
-  background-size: 40px 50px;
-  pointer-events: none;
+    width: 40px;
+    height: 50px;
+    display: block;
+    content: ' ';
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    margin: -40px 0 0 -11px;
+    background: url('/static/img/player_sprite.png');
+    background-size: 40px 50px;
+    pointer-events: none;
 }
 
 #map[state="standing"]:after {
-  background: url('/static/img/player_sprite.png');
-  background-size: 40px 50px;
+    background: url('/static/img/player_sprite.png');
+    background-size: 40px 50px;
 }
 
 #map[state="running"]:after {
-  background: url('/static/img/run.gif');
-  background-size: 40px 50px;
+    background: url('/static/img/run.gif');
+    background-size: 40px 50px;
 }
 
 #floating-panel {
-  position: absolute;
-  top: 10px;
-  left: 25%;
-  z-index: 5;
-  background-color: #fff;
-  padding: 5px;
-  border: 1px solid #999;
-  text-align: center;
-  font-family: 'Roboto','sans-serif';
-  line-height: 30px;
-  padding-left: 10px;
+    position: absolute;
+    top: 10px;
+    left: 25%;
+    z-index: 5;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #999;
+    text-align: center;
+    font-family: 'Roboto','sans-serif';
+    line-height: 30px;
+    padding-left: 10px;
 }
 
 #floating-panel {
-  background-color: #fff;
-  border: 1px solid #999;
-  left: 25%;
-  padding: 5px;
-  position: absolute;
-  top: 10px;
-  z-index: 5;
+    background-color: #fff;
+    border: 1px solid #999;
+    left: 25%;
+    padding: 5px;
+    position: absolute;
+    top: 10px;
+    z-index: 5;
+}
+
+#login-container {
+    padding: 30px;
+    background-color: #96d454;
+    display: inline-block;
+}
+
+.block {
+    display: inline-block;
 }
