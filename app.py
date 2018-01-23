@@ -141,9 +141,6 @@ def findPokemon(num):
 
     #print "uh oh!! try again later"
 
-
-print findPokemon(206);
-
 if __name__ == '__main__':
     db.initDB()
     app.debug = True

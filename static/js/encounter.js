@@ -100,16 +100,20 @@ function draw() {
     ctx.drawImage(trainer, -50, 100);
     ctx.drawImage(sprite, spriteX, spriteY, 200, 200);
     //draw sprite hitbox
+    /*
     ctx.beginPath();
     ctx.arc(spriteX + 100, spriteY + 100, 50, 0, 2*Math.PI);
     ctx.stroke();
+    */
     if (ballThrown) {
         //console.log(pokeball + " " + ballX + " " + ballY + " " + ballSize);
         ctx.drawImage(pokeball, ballX - 25, ballY - 25, ballSize, ballSize);
         //draw pokeball hitbox
+        /*
         ctx.beginPath();
         ctx.arc(ballX, ballY, 5, 0, 2*Math.PI);
         ctx.stroke();
+        */
     }
     for (var i = 0; i < ballsLeft; i++) {
         ctx.drawImage(pokeball, 300 + 60 * i, 400, ballSize, ballSize);
