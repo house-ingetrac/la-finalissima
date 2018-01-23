@@ -84,6 +84,14 @@ def map():
     else:
         return redirect(url_for('root'))
 
+@app.route('/profile')
+def profile():
+    if 'user' in session:
+        pokemon = db.getPokemon('user')
+        return render_template('profile.html', title = 'Profile', pokemon = pokemon )
+    else:
+        return redirect(url_for('auth'))
+    
 @app.route('/load_encounter')
 def load_encounter():
     rarity_list = [1]*10 + [2]*9 + [3]*8 + [4]*7 + [5]*6 + [6]*5 + [7]*4 + [8]*3 + [9]*2 + [10]
@@ -114,7 +122,8 @@ def capture():
 
 @app.route('/caught')
 def caught():
-    # player caught the pokemon in session['encounter']
+    #player caught the pokemon in session['encounter']
+    db.addPokemon(session['user'], session['encounter'], True )
     return redirect('/map')
 
 if __name__ == '__main__':

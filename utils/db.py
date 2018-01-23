@@ -2,13 +2,13 @@ import sqlite3, os, csv
 from flask import request, flash
 
 def initDB():
-    if not os.path.exists('data/databases.db'):
+    if not os.path.exists('../data/databases.db'):
         print "Creating database..."
-        db = sqlite3.connect("data/databases.db")
+        db = sqlite3.connect("../data/databases.db")
         c = db.cursor()
-        c.execute("CREATE TABLE IF NOT EXISTS users (user TEXT, pass TEXT, PRIMARY KEY(user))")
+        c.execute("CREATE TABLE IF NOT EXISTS users (user TEXT, pass TEXT, pokemon BLOB, PRIMARY KEY(user))")
         c.execute("CREATE TABLE IF NOT EXISTS pokemon_by_rarity (id INT, name TEXT, rarity INT)")
-        with open("data/pokemon_rarity.csv", "rU") as rarity_csv_file:
+        with open("../data/pokemon_rarity.csv", "rU") as rarity_csv_file:
             next(rarity_csv_file)
             csvreader = csv.reader(rarity_csv_file)
             for row in csvreader:
@@ -22,10 +22,36 @@ def initDB():
 def addUser(user, pazz ):
     db = sqlite3.connect("data/databases.db")
     c = db.cursor()
-    c.execute("INSERT INTO users VALUES(?,?)", (user,pazz))
+    c.execute("INSERT INTO users VALUES(?,?,?)", (user,pazz,'0'))
+    db.commit()
+    db.close()
+    
+def addPokemon( user, pokemon , captured):
+    db = sqlite3.connect("../data/databases.db")
+    c = db.cursor()
+    str2 = pokemon + " " + str(captured)
+    oldBlob = c.execute("SELECT pokemon from users where users.user ='" + user + "'")
+    for key in oldBlob:
+        print key[0]
+        newBlob = key[0] + "," + str2
+    print newBlob
+    execute_this = "UPDATE users SET pokemon = '" + newBlob + "' WHERE user='" + user + "'"
+    c.execute(execute_this)
     db.commit()
     db.close()
 
+def updateCap( user, pokemon ):
+    db = sqlite3.connect("../data/databases.db")
+    c = db.cursor()
+    oldBlob = c.execute("SELECT pokemon from users where users.user ='" + user + "'")
+    for key in oldBlob:
+        print key[0].split[',']
+    execute_this = "UPDATE users SET pokemon = '" + newBlob + "WHERE user='" + user + "'AND pokemon ='"+ pokemon +"'"
+    c.execute(execute_this)
+    db.commit()
+    db.close()
+
+    
 def getUsers():
     db = sqlite3.connect("data/databases.db")
     c = db.cursor()
@@ -37,8 +63,22 @@ def getUsers():
     db.close()
     return users
 
+def getPokemon(usern):
+    db = sqlite3.connect("data/databases.db")
+    c = db.cursor()
+    a = 'SELECT pokemon FROM users WHERE users.user ="'+ usern + '"'
+    x = c.execute(a)
+    pokemon = {}
+    for line in x:
+        pokemon[line[0]] = line[1]
+    db.close()
+    return pokemon
+    
 def getPokemonWithRarity(rarity):
     db = sqlite3.connect("data/databases.db")
     c = db.cursor()
     pokemon_list = c.execute("SELECT id FROM pokemon_by_rarity WHERE rarity = %d ORDER BY RANDOM() LIMIT 1" % rarity)
     return pokemon_list.fetchone()
+
+
+
