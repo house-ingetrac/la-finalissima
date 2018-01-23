@@ -127,7 +127,7 @@ def caught():
     #player caught the pokemon in session['encounter']
     pokemon_id = session['encounter']
     pokemon_id = int(pokemon_id)
-    db.addPokemon(session['user'], pokemon_id - 1, False)
+    db.addPokemon(session['user'], pokemon_id - 1, True)
     return redirect('/map')
 
 if __name__ == '__main__':
