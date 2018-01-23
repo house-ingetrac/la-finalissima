@@ -64,8 +64,9 @@ body {
 
 #login-container {
     padding: 30px;
-    background-color: #96d454;
+    background-color: rgba(150,212,84,.85);
     display: inline-block;
+    border: black groove thin;
 }
 
 .block {

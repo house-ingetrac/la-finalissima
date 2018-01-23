@@ -166,3 +166,5 @@ shakilR -- 2018-01-22 19:41
 downloaded Google Maps API script and sourced it
 set background div for login
 
+michaelR -- 2018-01-22 20:00
+styled login page - slight decrease in background opacity, added border to login block
