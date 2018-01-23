@@ -87,13 +87,25 @@ def map():
 @app.route('/profile')
 def profile():
     if 'user' in session:
-        pokemon = db.getPokemon('user')
-        for key in pokemon:
-            print key
-            print pokemon[key]
-        return render_template('profile.html', title = 'Profile', pokemon = pokemon )
+        raw_pokemon = db.getPokemon('user')
+        pokemon = []
+        for key in raw_pokemon:
+            pokedata = pokebase.pokemon(key)
+            this_pokemon = {}
+            this_pokemon['sprite'] = pokedata.sprites.front_default.encode('ascii', 'ignore')
+            this_pokemon['id'] = pokedata.id
+            this_pokemon['name'] = pokedata.name.encode('ascii', 'ignore')
+            if raw_pokemon[key] == '1':
+                this_pokemon['caught'] = False
+            else:
+                this_pokemon['caught'] = True
+            pokemon.append(this_pokemon)
+        return render_template('profile.html', 
+                title = 'Profile', 
+                pokemon = pokemon,
+                log = True)
     else:
-        return redirect(url_for('auth'))
+        return redirect('/login')
     
 @app.route('/load_encounter')
 def load_encounter():

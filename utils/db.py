@@ -56,27 +56,11 @@ def getPokemon(usern):
     c = db.cursor()
     a = 'SELECT pokemon FROM users WHERE users.user ="'+ usern + '"'
     x = c.execute(a)
+    raw_pokemon = x.fetchone()[0]
     pokemon = {}
-    for key in x:
-        for ke in key:
-            for i in range(0,721):
-                num = ke.encode('ascii','ignore')[i]
-                if num == "2":
-                    if 'caught' not in pokemon:
-                        pokemon['caught'] = str(i+1)
-                        print 'asifhasifhasiofhasifasiofhasifhiasfhias'
-                        print pokemon['caught']
-                    else:
-                        pokemon['caught'] += " " + str(i+1)
-                        print 'asifhasifhasiofhasifasiofhasifhiasfhias'
-                        print pokemon['caught']
-                    print "added caught!"
-                if num == "1":
-                    if 'encountered' not in pokemon:
-                        pokemon['encountered'] = str(i+1)
-                    else:
-                        pokemon['encountered'] += " " + str(i+1)
-                    print "added encountered!"
+    for pokemon_id, c in enumerate(raw_pokemon):
+        if c != '0':
+            pokemon[pokemon_id] = c
     db.close()
     return pokemon
 
@@ -85,9 +69,3 @@ def getPokemonWithRarity(rarity):
     c = db.cursor()
     pokemon_list = c.execute("SELECT id FROM pokemon_by_rarity WHERE rarity = %d ORDER BY RANDOM() LIMIT 1" % rarity)
     return pokemon_list.fetchone()
-
-x = getPokemon('kelly')
-for key in x:
-    print key
-    print x[key]
-
