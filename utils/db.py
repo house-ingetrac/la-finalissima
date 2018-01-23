@@ -40,18 +40,6 @@ def addPokemon( user, pokemon , captured):
     db.commit()
     db.close()
 
-def updateCap( user, pokemon ):
-    db = sqlite3.connect("data/databases.db")
-    c = db.cursor()
-    oldBlob = c.execute("SELECT pokemon from users where users.user ='" + user + "'")
-    for key in oldBlob:
-        print key[0].split[',']
-    execute_this = "UPDATE users SET pokemon = '" + newBlob + "WHERE user='" + user + "'AND pokemon ='"+ pokemon +"'"
-    c.execute(execute_this)
-    db.commit()
-    db.close()
-
-    
 def getUsers():
     db = sqlite3.connect("data/databases.db")
     c = db.cursor()
@@ -68,17 +56,40 @@ def getPokemon(usern):
     c = db.cursor()
     a = 'SELECT pokemon FROM users WHERE users.user ="'+ usern + '"'
     x = c.execute(a)
-    pokemon = {}
-    for line in x:
-        pokemon[line[0]] = line[1]
+    pokemon = { }
+    for key in x:
+        for ke in key:
+            for i in range(0,721):
+                num = ke.encode('ascii','ignore')[i]
+                print num
+                if num == '2':
+                    if 'caught' not in pokemon:
+                        pokemon['caught'] = i+1
+                    else:
+                        pokemon['caught'].append(i+1)
+                    print "added caught!"
+                if num == '1':
+                    if 'encountered' not in pokemon:
+                        pokemon['encountered'] = i+1
+                    else:
+                        pokemon['encountered'].append(i+1)
+                    print "added encountered!"
     db.close()
     return pokemon
-    
+
+def findPokemon(num):
+    url = "http://pokeapi.co/api/v2/pokemon/" + num + "/"
+
 def getPokemonWithRarity(rarity):
     db = sqlite3.connect("data/databases.db")
     c = db.cursor()
     pokemon_list = c.execute("SELECT id FROM pokemon_by_rarity WHERE rarity = %d ORDER BY RANDOM() LIMIT 1" % rarity)
     return pokemon_list.fetchone()
 
+'''
+x = getPokemon('kelly')
+for key in x:
+    print key
+    print x[key]
 
-
+'''
