@@ -12,6 +12,14 @@ def root():
     else:
         return render_template('home.html', title = 'Home', log = False)
 
+@app.route('/map_script')
+def map_script():
+    key = ''
+    with open('GOOGLE_MAPS_API_KEY', 'rU') as key_file:
+        key = key_file.read().strip()
+    script = urllib2.urlopen('https://maps.googleapis.com/maps/api/js?key=%s&libraries=visualization,geometry&callback=initMap' % key)
+    return script.read()
+
 @app.route('/login',methods=['GET', 'POST'])
 def login():
     if 'user' in session:
