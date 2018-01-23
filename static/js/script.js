@@ -207,14 +207,16 @@ function encounter() {
 
         //set content of infoWindow with sprite, pkmn name
         var spawn = pkmn.pop(); //pop pokemon from list of loaded pokemon
-        var contentString, sprite;
+        var contentString, sprite, link;
         if (spawn && Math.random() < .6) { //if there are pokemon and within %chance
             contentString = "You found:<br>" + spawn.name[0].toUpperCase() +
-                            spawn.name.substr(1); //capitalize pokemon name
+                spawn.name.substr(1); //capitalize pokemon name
             sprite = spawn.sprite;
+            link = "<a href='/capture'>Catch this pokemon</a></div>";
         } else { //no pokemon
             contentString = "Just grass";
             sprite = "/static/img/grass.png";
+            link = "";
         }
         if (infoWindow) { //if there is already an infoWindow open
             infoWindow.close();
@@ -224,9 +226,10 @@ function encounter() {
             "<div style='float:left'>" +
             "<img src='" + sprite + "' width='100px'></div>" +
             "<div style='float:right; padding: 10px;'>" +
-            "<h4>" + contentString + "</h4></div>"
+            "<h4>" + contentString + "</h4>" + link
         });
         infoWindow.setPosition(dist); //set position of infoWindow on heatmap point
         infoWindow.open(map); //display infoWindow
+        $.get('/set_capture/' + spawn.id, () => console.log("set encounter"));
     }
 }

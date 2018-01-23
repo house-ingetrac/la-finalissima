@@ -168,3 +168,6 @@ set background div for login
 
 michaelR -- 2018-01-22 20:00
 styled login page - slight decrease in background opacity, added border to login block
+shakilR -- 2018-01-23 09:57
+created capturing pokemon route and storing it in session
+

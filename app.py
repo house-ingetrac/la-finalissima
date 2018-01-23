@@ -5,6 +5,9 @@ from utils import db
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
 
+def logged_in():
+    return 'user' in session
+
 @app.route('/')
 def root():
     if 'user' in session:
@@ -90,7 +93,29 @@ def load_encounter():
     pokedict = {}
     pokedict['name'] = pokemon.name.encode('ascii', 'ignore')
     pokedict['sprite'] = pokemon.sprites.front_default.encode('ascii', 'ignore')
+    pokedict['id'] = pokemon.id
     return pokedict.__str__()
+
+@app.route('/set_capture/<int:pokemon_id>')
+def set_capture(pokemon_id):
+    session['encounter'] = pokemon_id
+    return redirect('/')
+
+@app.route('/capture')
+def capture():
+    if 'user' in session:
+        pokemon_id = session['encounter']
+        pokemon = pokebase.pokemon(pokemon_id)
+        return render_template('capture.html',
+                sprite = pokemon.sprites.front_default,
+                name = pokemon.name,
+                log = True)
+    return redirect('/')
+
+@app.route('/caught')
+def caught():
+    # player caught the pokemon in session['encounter']
+    return redirect('/map')
 
 if __name__ == '__main__':
     db.initDB()
