@@ -2,10 +2,12 @@
 
 {% block content %}
 <center>
-  <div>
+  <div class="boxed-container">
     <h1>{{ name }}</h1>
-    <img width="400px" src="{{ sprite }}" alt="" /> <br>
+    <canvas width="800px" height="480px" id="encounterCanvas" /> <br>
     <a href="/caught">Catch this pok&eacute;mon</a>
   </div>
 </center>
+
+<script type="text/javascript" src="/static/js/encounter.js"></script>
 {% endblock content %}
