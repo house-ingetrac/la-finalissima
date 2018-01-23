@@ -113,7 +113,9 @@ def set_capture(pokemon_id):
 def capture():
     if 'user' in session:
         pokemon_id = session['encounter']
+        pokemon_id = int(pokemon_id)
         pokemon = pokebase.pokemon(pokemon_id)
+        db.addPokemon(session['user'], pokemon_id - 1, False)
         return render_template('capture.html',
                 sprite = pokemon.sprites.front_default,
                 name = pokemon.name,
@@ -123,7 +125,9 @@ def capture():
 @app.route('/caught')
 def caught():
     #player caught the pokemon in session['encounter']
-    db.addPokemon(session['user'], session['encounter'], True )
+    pokemon_id = session['encounter']
+    pokemon_id = int(pokemon_id)
+    db.addPokemon(session['user'], pokemon_id - 1, False)
     return redirect('/map')
 
 if __name__ == '__main__':

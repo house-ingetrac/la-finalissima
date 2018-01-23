@@ -6,7 +6,7 @@ def initDB():
         print "Creating database..."
         db = sqlite3.connect("data/databases.db")
         c = db.cursor()
-        c.execute("CREATE TABLE IF NOT EXISTS users (user TEXT, pass TEXT, pokemon BLOB, PRIMARY KEY(user))")
+        c.execute("CREATE TABLE IF NOT EXISTS users (user TEXT, pass TEXT, pokemon TEXT, PRIMARY KEY(user))")
         c.execute("CREATE TABLE IF NOT EXISTS pokemon_by_rarity (id INT, name TEXT, rarity INT)")
         with open("data/pokemon_rarity.csv", "rU") as rarity_csv_file:
             next(rarity_csv_file)
@@ -29,13 +29,13 @@ def addUser(user, pazz ):
 def addPokemon( user, pokemon , captured):
     db = sqlite3.connect("data/databases.db")
     c = db.cursor()
-    str2 = pokemon + " " + str(captured)
-    oldBlob = c.execute("SELECT pokemon from users where users.user ='" + user + "'")
-    for key in oldBlob:
-        print key[0]
-        newBlob = key[0] + "," + str2
-    print newBlob
-    execute_this = "UPDATE users SET pokemon = '" + newBlob + "' WHERE user='" + user + "'"
+    c.execute("SELECT pokemon from users where users.user = '%s'" % user)
+    oldBlob = c.fetchone()[0].encode('ascii', 'ignore')
+    if captured:
+        oldBlob = oldBlob[:pokemon] + '2' + oldBlob[pokemon + 1:]
+    elif oldBlob[pokemon] != '2':
+        oldBlob = oldBlob[:pokemon] + '1' + oldBlob[pokemon + 1:]
+    execute_this = "UPDATE users SET pokemon = '%s' WHERE users.user = '%s'" % (oldBlob, user)
     c.execute(execute_this)
     db.commit()
     db.close()
