@@ -5,9 +5,13 @@
   <div class="boxed-container">
     <h1>{{ name }}</h1>
     <canvas width="800px" height="480px" id="encounterCanvas"></canvas> <br>
-    <a href="/caught">Catch this pok&eacute;mon</a>
   </div>
 </center>
+
+<img id="sprite" src="{{ sprite }}" hidden>
+<img id="encounterBackground" src="/static/img/encounter.png" hidden>
+<img id="pokeball" src="/static/img/pokeball.png" hidden>
+<img id="trainer" src="/static/img/trainer_back.png" hidden>
 
 <script type="text/javascript" src="/static/js/encounter.js"></script>
 {% endblock content %}
