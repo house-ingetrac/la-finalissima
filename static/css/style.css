@@ -72,3 +72,10 @@ body {
 .block {
     display: inline-block;
 }
+
+#flash-container {
+    padding: 10px;
+    background-color: rgba(150,212,84,.85);
+    display: inline-block;
+    border: black groove thin;
+}
