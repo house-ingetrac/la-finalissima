@@ -125,8 +125,7 @@ This could be solved by using the pkmnLocations as the points for the heatmap an
 - Other things are mostly graphical, we still need to do the spawning points as the player moves around.
 
 kellyW -- 2018-01-17 13:20
-navbar is functional
- -different based on logged in or logged out
+added navbar
 
 naotakaK -- 2018-01-17 23:24
 Encountering pokemon now deletes point from the heatmap.
@@ -134,6 +133,7 @@ Still need to work on auto closing infoWindow based on player distance from the 
 
 kellyW -- 2018-01-18 13:00
 finished navbar
+- different based on logged in or logged out
 
 naotakaK -- 2018-01-18 18:49
 Fixed heatmap spawning, removal of infoWindows.
