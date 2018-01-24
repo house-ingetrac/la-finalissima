@@ -128,7 +128,7 @@ def load_encounter():
 @app.route('/set_capture/<int:pokemon_id>')
 def set_capture(pokemon_id):
     session['encounter'] = pokemon_id
-    return redirect('/')
+    return ''
 
 @app.route('/capture')
 def capture():
