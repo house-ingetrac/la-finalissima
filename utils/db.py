@@ -56,29 +56,29 @@ def getPokemon(usern):
     c = db.cursor()
     a = 'SELECT pokemon FROM users WHERE users.user ="'+ usern + '"'
     x = c.execute(a)
-    pokemon = { }
+    pokemon = {}
     for key in x:
         for ke in key:
             for i in range(0,721):
                 num = ke.encode('ascii','ignore')[i]
-                print num
-                if num == '2':
+                if num == "2":
                     if 'caught' not in pokemon:
-                        pokemon['caught'] = i+1
+                        pokemon['caught'] = str(i+1)
+                        print 'asifhasifhasiofhasifasiofhasifhiasfhias'
+                        print pokemon['caught']
                     else:
-                        pokemon['caught'].append(i+1)
+                        pokemon['caught'] += " " + str(i+1)
+                        print 'asifhasifhasiofhasifasiofhasifhiasfhias'
+                        print pokemon['caught']
                     print "added caught!"
-                if num == '1':
+                if num == "1":
                     if 'encountered' not in pokemon:
-                        pokemon['encountered'] = i+1
+                        pokemon['encountered'] = str(i+1)
                     else:
-                        pokemon['encountered'].append(i+1)
+                        pokemon['encountered'] += " " + str(i+1)
                     print "added encountered!"
     db.close()
     return pokemon
-
-def findPokemon(num):
-    url = "http://pokeapi.co/api/v2/pokemon/" + num + "/"
 
 def getPokemonWithRarity(rarity):
     db = sqlite3.connect("data/databases.db")
@@ -86,10 +86,8 @@ def getPokemonWithRarity(rarity):
     pokemon_list = c.execute("SELECT id FROM pokemon_by_rarity WHERE rarity = %d ORDER BY RANDOM() LIMIT 1" % rarity)
     return pokemon_list.fetchone()
 
-'''
 x = getPokemon('kelly')
 for key in x:
     print key
     print x[key]
 
-'''

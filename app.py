@@ -88,6 +88,9 @@ def map():
 def profile():
     if 'user' in session:
         pokemon = db.getPokemon('user')
+        for key in pokemon:
+            print key
+            print pokemon[key]
         return render_template('profile.html', title = 'Profile', pokemon = pokemon )
     else:
         return redirect(url_for('auth'))
@@ -131,18 +134,6 @@ def caught():
     return redirect('/map')
 
 
-def findPokemon(num):
-    url = "http://pokeapi.co/api/v2/pokemon/" + str(num) + "/"
-    print url
-    #try:
-    data = urllib2.urlopen("https://pokeapi.co/api/v2/pokemon/206/")
-    #d = json.loads(data.read())
-    #except:
-
-    #print "uh oh!! try again later"
-
-
-print findPokemon(206);
 
 if __name__ == '__main__':
     db.initDB()
