@@ -180,3 +180,8 @@ completed pokemon capture minigame
 shakilR -- 2018-01-23 15:57
 profile page shows what pokemon you encounterd and caught
 
+shakilR -- 2018-01-23 19:19
+added borders to profile table
+changed grass color
+fixed database error on new user
+

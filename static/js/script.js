@@ -143,6 +143,13 @@ function initMap() {
     });
     heatmap.setMap(map);
 
+    var gradient = [
+        'rgba(0, 255, 0, 0)',
+        'rgba(0, 200, 0, 1)',
+        'rgba(0, 170, 0, 1)',
+    ]
+    heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
+
     //listening for arrow keys for movement
     window.addEventListener('keydown', keyDownHandler);
     window.addEventListener('keyup', keyUpHandler);
