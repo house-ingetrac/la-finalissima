@@ -134,6 +134,7 @@ Still need to work on auto closing infoWindow based on player distance from the 
 kellyW -- 2018-01-18 13:00
 finished navbar
 - different based on logged in or logged out
+started: encounter window shows a random pokemon
 
 naotakaK -- 2018-01-18 18:49
 Fixed heatmap spawning, removal of infoWindows.
@@ -188,7 +189,7 @@ kellyW -- 2018-01-23 15:30
 added pokemon blob into users table
 can add and update pokemon encountered/captured but it only works when you run db.py, does some weird stuff when you run it from app.py
 added findPokemon - returns pokemon info
-styling homepage and navbar
+styling homepage and navbar, added map option
 added profile.html
 minor fix: titles implemented
 
