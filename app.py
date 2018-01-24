@@ -130,6 +130,20 @@ def caught():
     db.addPokemon(session['user'], pokemon_id - 1, True)
     return redirect('/map')
 
+
+def findPokemon(num):
+    url = "http://pokeapi.co/api/v2/pokemon/" + str(num) + "/"
+    print url
+    #try:
+    data = urllib2.urlopen("https://pokeapi.co/api/v2/pokemon/206/")
+    #d = json.loads(data.read())
+    #except:
+
+    #print "uh oh!! try again later"
+
+
+print findPokemon(206);
+
 if __name__ == '__main__':
     db.initDB()
     app.debug = True
