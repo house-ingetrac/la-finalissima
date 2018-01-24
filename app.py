@@ -140,6 +140,7 @@ def capture():
         return render_template('capture.html',
                 sprite = pokemon.sprites.front_default,
                 name = pokemon.name,
+                title = pokemon.name,
                 log = True)
     return redirect('/')
 
