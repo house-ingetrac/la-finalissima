@@ -53,7 +53,8 @@ def create():
             return redirect(url_for('login'))
         else:
             db.addUser(request.form.get('user'), request.form.get('password'))
-            session['user'] = request.form.get('username')
+            session['user'] = request.form.get('user')
+            # print "Made account for %s" % request.form.get('user')
             return redirect(url_for('map'))
 
 @app.route('/auth',methods=['GET', 'POST'])
