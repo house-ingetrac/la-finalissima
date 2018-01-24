@@ -26,6 +26,12 @@ def addUser(user, pazz ):
     db.commit()
     db.close()
 
+
+# pokemon column is a string of 721 (num of pokemon) numbers either 0,1, or 2 
+# 0 - not encountered or caught
+# 1 - encountered but not caught
+# 2 - encountered and caught
+# update corresponding pokemon index number with its capture status
 def addPokemon( user, pokemon , captured):
     db = sqlite3.connect("data/databases.db")
     c = db.cursor()
@@ -40,6 +46,7 @@ def addPokemon( user, pokemon , captured):
     db.commit()
     db.close()
 
+#return dict of usernames and passwords, used in auth  
 def getUsers():
     db = sqlite3.connect("data/databases.db")
     c = db.cursor()
@@ -51,6 +58,8 @@ def getUsers():
     db.close()
     return users
 
+
+# return dict of 721 numbers: either 0,1, or 2
 def getPokemon(usern):
     # print "Getting pokemon for %s" % usern
     db = sqlite3.connect("data/databases.db")
