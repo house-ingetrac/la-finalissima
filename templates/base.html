@@ -13,13 +13,14 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default" style="background-color:#3BB9FF">
       <div class="container-fluid">
         <div class="navbar-header">
           <a class="navbar-brand" href="/">Pok&eacute;mon GOgle</a>
         </div>
         <ul class="nav navbar-nav">
           {% if log  %}
+	  <li><a href="map">Map</a></li>
           <li><a href="profile">Profile</a></li>
           <li><a href="logout">Logout</a></li>
           {% else %}

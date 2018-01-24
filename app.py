@@ -90,7 +90,7 @@ def profile():
         raw_pokemon = db.getPokemon('user')
         pokemon = []
         for key in raw_pokemon:
-            pokedata = pokebase.pokemon(key)
+            pokedata = pokebase.pokemon( int(key)+1)
             this_pokemon = {}
             this_pokemon['sprite'] = pokedata.sprites.front_default.encode('ascii', 'ignore')
             this_pokemon['id'] = pokedata.id
