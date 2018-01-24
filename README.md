@@ -2,6 +2,8 @@
 
 ### Naotaka Kinoshita, Shakil Rafi, Michael Ruvinshteyn, Kelly Wang
 
+[Youtube Video Link](https://www.youtube.com/watch?v=bh83YKHzWWo)
+
 Travel around the map to find Pokémon which you can catch and view in your Pokédex.
 
 ## Getting Started
