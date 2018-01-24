@@ -201,3 +201,5 @@ added borders to profile table
 changed grass color
 fixed database error on new user
 
+kellyW -- 2018-01-23 21:20
+added comments
