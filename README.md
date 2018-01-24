@@ -2,9 +2,11 @@
 
 ### Naotaka Kinoshita, Shakil Rafi, Michael Ruvinshteyn, Kelly Wang
 
-[Youtube Video Link](https://www.youtube.com/watch?v=bh83YKHzWWo)
+[Watch our demo here](https://www.youtube.com/watch?v=bh83YKHzWWo)
 
 Travel around the map to find Pokémon which you can catch and view in your Pokédex.
+
+This uses the [Google Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/) which provides a map for the user to travel around on as well as [PokeAPI](https://pokeapi.co/) which provides information about pokemon.
 
 ## Getting Started
 
@@ -39,8 +41,9 @@ Travel around the map to find Pokémon which you can catch and view in your Pok�
    ```
 1. Install all dependencies listed above
 2. Procure an API key for Google Maps from the following site: [GOOGLE MAPS API](https://developers.google.com/maps/documentation/javascript/)
-  * Insert your key into `GOOGLE_MAPS_API_KEY`
-  * Example GOOGLE_MAPS_API_KEY file:
+   * Click "Get a key" and follow the given instructions
+   * Insert your key into `GOOGLE_MAPS_API_KEY`
+   * Example GOOGLE_MAPS_API_KEY file:
      ```
      EAKLN212asdf
      ```
@@ -56,10 +59,3 @@ Travel around the map to find Pokémon which you can catch and view in your Pok�
 6. Open a browser window and go to `http://localhost:5000`
 
 That's it !!
-
-
-
-
-
-
-[POKEAPI](https://pokeapi.co/)
