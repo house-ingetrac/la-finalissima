@@ -174,3 +174,6 @@ created capturing pokemon route and storing it in session
 
 michaelR -- 2018-01-23 12:08
 added flash messages - implemented in base.html
+shakilR -- 2018-01-23 14:57
+completed pokemon capture minigame
+

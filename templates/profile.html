@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<center>
+  <div class="boxed-container">
+    <h1><b>Your Pok&eacute;mon</b></h1>
+    {% for i in pokemon %}
+    {{pokemon[i]}}
+    {% endfor %}
+  </div>
+</center>
+{% endblock content %}

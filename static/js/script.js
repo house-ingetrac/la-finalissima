@@ -1,4 +1,5 @@
 var map, heatmap, infoWindow, loc, dir, movement, lastLoc;
+var spawnedPokemon = false;
 var mapDiv = document.getElementById('map');
 
 var pkmnLocations = [];
@@ -72,6 +73,11 @@ function updateSprite() {
  ***/
 function keyDownHandler(e) {
     switch (e.keyCode) {
+        case 13:
+            if (infoWindow != null && spawnedPokemon) {
+                window.location = "/capture";
+            }
+            break;
         case 37:
             dir.lng = -0.00005;
             break;
@@ -213,10 +219,13 @@ function encounter() {
                 spawn.name.substr(1); //capitalize pokemon name
             sprite = spawn.sprite;
             link = "<a href='/capture'>Catch this pokemon</a></div>";
+            link += "<br>(Press Enter)"
+            spawnedPokemon = true;
         } else { //no pokemon
             contentString = "Just grass";
             sprite = "/static/img/grass.png";
             link = "";
+            spawnedPokemon = false;
         }
         if (infoWindow) { //if there is already an infoWindow open
             infoWindow.close();

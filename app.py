@@ -42,13 +42,13 @@ def create():
         return redirect('/')
     else:
         users = db.getUsers()
-        print users
-        print request.form.get('user')
+        # print users
+        # print request.form.get('user')
         if request.form.get('user') in users:
             flash("u can't pick that name")
             return redirect(url_for('login'))
         if request.form.get('password') != request.form.get('confpass'):
-            print "password"
+            # print "password"
             flash("Hey ur passwords are wrong")
             return redirect(url_for('login'))
         else:
@@ -62,11 +62,11 @@ def auth():
         return redirect('/')
     else:
         users = db.getUsers()
-        print users
-        print request.form.get('user')
+        # print users
+        # print request.form.get('user')
         if request.form.get('user') in users:
-            print 'here:'
-            print users[request.form.get('user')]
+            # print 'here:'
+            # print users[request.form.get('user')]
             if request.form.get('password') == users[request.form.get('user')]:
                 session['user'] = request.form.get('user')
                 return redirect(url_for('map'))
@@ -132,7 +132,6 @@ def caught():
     pokemon_id = int(pokemon_id)
     db.addPokemon(session['user'], pokemon_id - 1, True)
     return redirect('/map')
-
 
 
 if __name__ == '__main__':
