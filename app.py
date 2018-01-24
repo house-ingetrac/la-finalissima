@@ -149,7 +149,7 @@ def capture():
                 log = True)
     return redirect('/')
 
-#update pokemon blob from users table
+#update pokemon column from users table
 @app.route('/caught')
 def caught():
     #player caught the pokemon in session['encounter']
