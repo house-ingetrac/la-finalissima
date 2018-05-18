@@ -15,8 +15,7 @@ def root():
     body = "<h2> Deployment Test </h2>"
     body+= "DIR: " + DIR + "<br>"
     body+= '<img src="' + url_for('static', filename='img/sacrifice.jpg') + '" width="500"</img>'
-    body+= '<br>idioscript'
-    print "HELOOOOO FROM THE SERVER SIDEE"
+    body+= '<br>idioscript <br> HELOOOOO FROM THE SERVER SIDEE'
     return body
 
 
