@@ -2,8 +2,8 @@
 
 
 
-## IdioScript
+## Pokemon Stay 2: Electric Boogaloo
 
-Welcome to IdioScript! Hands type faster than they write? Well, we’ve got the solution. Our web app allows you to generate your own font for those last minute “authentic handwritten” cards or “handwritten” homeworks or maybe because you just love your handwriting that much! Simply rewrite each letter of the alphabet for us using our calibration system. Then, we’ll save that in your account and generate writing for you either by uploading your text or typing it in our text box.
+Welcome to Pokemon Stay! This is Pokemon Go in Google Maps with battling and trading. We will be expanding on Team Blubber Duckies’ last term project by implementing battles, trades and an all expansive pokedex. Users will be able to see what pokemon they’ve caught, each pokemon’s stats, battle a Pokemon mastercomputer, and trade with other players!
 
 [Digital Ocean Droplet](http://206.189.231.92/)
