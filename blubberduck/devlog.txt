@@ -1,0 +1,205 @@
+//Team Blubberduck {Naotaka Kinoshita, Shakil Rafi, Michael Ruvinshteyn, Kelly Wang}
+//SoftDev1 pd07
+//p02 -- Pokemon GOgle
+//2017-12-21
+
+ ______   ______   __   __   __       ______   _______
+/_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\
+\:::_ \ \\::::_\/_\:\ \\ \ \\:\ \    \:::_ \ \\::::__\/__
+ \:\ \ \ \\:\/___/\\:\ \\ \ \\:\ \    \:\ \ \ \\:\ /____/\
+  \:\ \ \ \\::___\/_\:\_/.:\ \\:\ \____\:\ \ \ \\:\\_  _\/
+   \:\/.:| |\:\____/\\ ..::/ / \:\/___/\\:\_\ \ \\:\_\ \ \
+    \____/_/ \_____\/ \___/_/   \_____\/ \_____\/ \_____\/
+
+     ────────▄████████████████▄───────
+     ─────▄███▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓███▄────
+     ────███▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓███────
+     ───██▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██───
+     ──██▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██──
+     ─██▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██─
+     ██▓▓▓▓▓▓▓▓▓▓▓▓███████▓▓▓▓▓▓▓▓▓▓▓▓██
+     ██▓▓▓▓▓▓▓▓▓▓▓██░░░░░██▓▓▓▓▓▓▓▓▓▓▓██
+     ██▓▓▓▓▓▓▓▓▓▓██░░███░░██▓▓▓▓▓▓▓▓▓▓██
+     ██████████████░░███░░██████████████
+     ██░░░░░░░░░░██░░███░░██░░░░░░░░░░██
+     ██░░░░░░░░░░░██░░░░░██░░░░░░░░░░░██
+     ██░░░░░░░░░░░░███████░░░░░░░░░░░░██
+     ─██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░██─
+     ──██░░░░░░░░░░░░░░░░░░░░░░░░░░░██──
+     ───██░░░░░░░░░░░░░░░░░░░░░░░░░██───
+     ────███░░░░░░░░░░░░░░░░░░░░░███────
+     ─────▀███░░░░░░░░░░░░░░░░███▀────
+     ────────▀████████████████▀───────
+
+
+=======================================================
+kellyW -- 2017-12-21 13:00
+hello world!
+
+naotakaK -- 2017-12-21 14:30
+added files to test flask compatability with google maps API
+
+michaelR -- 2017-12-21 21:12
+added design.pdf to the repo
+
+shakilR -- 2017-12-21 21:50
+added log.sh script to repo for easy devlogging
+
+kellyW -- 2017-12-21 22:13
+added modified design.pdf with second db table to repo
+
+michaelR -- 2017-12-22 13:19
+added description to design.pdf
+
+shakilR -- 2017-12-26 22:35
+setup movement for map using arrow keys
+
+kellyW -- 2018-01-02 13:15
+added base template, fixed map loading, issue with title and head
+
+naotakaK -- 2018-01-02 13:15
+changed map center to times square and added random point generation for heatmap; still needs to be tweaked
+
+michaelR -- 2018-01-03 13:06
+fixed base template to properly map onto branching templates -- blocks head and title removed, only content is necessary for any other templates; index template no longer uses head/title blocks
+
+naotakaK -- 2018-01-03 13:12
+More work with the map - need to implement
+Random spawning of points based on player location
+Associate points in heatmap with % chance of encountering pokemon, and scale to the size of that patch of grass appropriately
+Animate player sprite
+Hide POIs and other irrelevant info
+Spawning pokecenters at certain locations
+Flying to other cities
+
+michaelR -- 2018-01-08 12:56
+created login template - login and create account forms on same page - CSS still needs to be added
+added icon to base.html - all sites now show a pokeball as their icon
+
+kellyW -- 2018-01-08 13:16
+added db.py - table for usernames and passwords
+added home.html
+rerouted and renamed templates
+
+naotakaK -- 2018-01-08 23:46
+Added limited info window functionality - for some reason, info windows are spawning in fixed location, not center of map. 
+Otherwise, infowindows are ready for integration with PokeAPI. 
+Place searches still need to be put in, I have some questions about libraries in the Maps API. Heatmaps : how to start off with nothing in the heatmap and then generate new points, maybe erase old ones?
+
+naotakaK -- 2018-01-11 10:52
+FIXED INFO WINDOW PROBLEM!!!
+Working on live updating heatmaps through MVC arrays. 
+Need to work on making a close enough function to figure out when to open up an infoWindow.
+Places search box - how to combine libraries?
+
+naotakaK -- 2018-01-11 18:29
+Having weird script error with 'google is not defined'
+The script error has something to do with the order that the scripts are declared (I think)
+Downloaded favicon and added to static/img
+
+shakilR -- 2018-01-11 21:18
+moved heatmap setup in a function to be called with initMap
+
+kellyW -- 2018-01-11 23:30
+login system works
+database works
+
+shakilR -- 2018-01-11 23:59
+added logout button
+
+michaelR -- 2018-01-12 12:50
+fixed background of login page - used cover size
+changed image on login page - png for clear background - may be changed later
+
+kellyW -- 2018-01-16 13:20
+update readMe
+ 
+naotakaK -- 2018-01-16 22:19
+Encounters are fixed and are waiting for pokeAPI stuff to continue.
+- Walking near a heatmap spawns (or has a chance to spawn) an infoWindow with info about Pokemon. 
+After player has walked close enough to the heatmap, regardless of whether or not the infoWindow spawned,
+the player will not be able to encounter another pokemon in that same exact location.
+- One problem with this is that although pokemon will no longer spawn there, the points remain in the heatmap.
+This could be solved by using the pkmnLocations as the points for the heatmap and changing the radius, but could be ugly.
+- One thing that should probably be implemented is checking if the player walks away from the infoWindow and then close the infoWindow automatically.
+- Other things are mostly graphical, we still need to do the spawning points as the player moves around.
+
+kellyW -- 2018-01-17 13:20
+added navbar
+
+naotakaK -- 2018-01-17 23:24
+Encountering pokemon now deletes point from the heatmap.
+Still need to work on auto closing infoWindow based on player distance from the window.
+
+kellyW -- 2018-01-18 13:00
+finished navbar
+- different based on logged in or logged out
+started: encounter window shows a random pokemon
+
+naotakaK -- 2018-01-18 18:49
+Fixed heatmap spawning, removal of infoWindows.
+- Added comments for all functions
+- Need to do ajax
+- heatmaps spawn around player as player moves
+
+
+naotakaK -- 2018-01-19 14:33
+Started ajax stuff
+- need to fix infoWindow removal when 2 or more spawn
+- need to fix ajax, calling fxn too many times
+- fixed permissions for favicon
+- downloaded background image and adjusted css accordingly
+
+naotakaK -- 2018-01-19 18:35
+ajax still broken
+- added running sprite, need to figure out how to change element in DOM
+
+shakilR -- 2018-01-19 20:41
+fixed ajax with encounters and closing extra infowindows
+
+naotakaK -- 2018-01-21 01:23
+Running player sprite works now
+- size needs to be edited to be the same as regular player sprite
+
+naotakaK -- 2018-01-21 11:51
+Minor infoWindow fix & commenting
+
+shakilR -- 2018-01-22 16:35
+spawns pokemon weighted by rarity (20% chance of a common pokemon spawning down to 2% chance of a super rare pokemon spawning)
+
+shakilR -- 2018-01-22 18:08
+fixed gif size while moving and changed sprite updating mechanism to css selectors
+
+shakilR -- 2018-01-22 19:41
+downloaded Google Maps API script and sourced it
+set background div for login
+
+michaelR -- 2018-01-22 20:00
+styled login page - slight decrease in background opacity, added border to login block
+
+shakilR -- 2018-01-23 09:57
+created capturing pokemon route and storing it in session
+
+michaelR -- 2018-01-23 12:08
+added flash messages - implemented in base.html
+shakilR -- 2018-01-23 14:57
+completed pokemon capture minigame
+
+kellyW -- 2018-01-23 15:30
+added pokemon blob into users table
+can add and update pokemon encountered/captured but it only works when you run db.py, does some weird stuff when you run it from app.py
+added findPokemon - returns pokemon info
+styling homepage and navbar, added map option
+added profile.html
+minor fix: titles implemented
+
+shakilR -- 2018-01-23 15:57
+profile page shows what pokemon you encounterd and caught
+
+shakilR -- 2018-01-23 19:19
+added borders to profile table
+changed grass color
+fixed database error on new user
+
+kellyW -- 2018-01-23 21:20
+added comments

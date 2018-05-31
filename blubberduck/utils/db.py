@@ -1,10 +1,12 @@
 import sqlite3, os, csv
 from flask import request, flash
 
+db_path = '/var/www/blubberduck/blubberduck/data/databases.db'
+
 def initDB():
-    if not os.path.exists('data/databases.db'):
+    if not os.path.exists(db_path):
         print "Creating database..."
-        db = sqlite3.connect("data/databases.db")
+        db = sqlite3.connect(db_path)
         c = db.cursor()
         c.execute("CREATE TABLE IF NOT EXISTS users (user TEXT, pass TEXT, pokemon TEXT, PRIMARY KEY(user))")
         c.execute("CREATE TABLE IF NOT EXISTS pokemon_by_rarity (id INT, name TEXT, rarity INT)")
@@ -20,7 +22,7 @@ def initDB():
 
 #add username and password to database
 def addUser(user, pazz ):
-    db = sqlite3.connect("data/databases.db")
+    db = sqlite3.connect(db_path)
     c = db.cursor()
     c.execute("INSERT INTO users VALUES(?,?,?)", (user,pazz,'0'*721))
     db.commit()
@@ -33,7 +35,7 @@ def addUser(user, pazz ):
 # 2 - encountered and caught
 # update corresponding pokemon index number with its capture status
 def addPokemon( user, pokemon , captured):
-    db = sqlite3.connect("data/databases.db")
+    db = sqlite3.connect(db_path)
     c = db.cursor()
     c.execute("SELECT pokemon from users where users.user = '%s'" % user)
     oldBlob = c.fetchone()[0].encode('ascii', 'ignore')
@@ -48,7 +50,7 @@ def addPokemon( user, pokemon , captured):
 
 #return dict of usernames and passwords, used in auth  
 def getUsers():
-    db = sqlite3.connect("data/databases.db")
+    db = sqlite3.connect(db_path)
     c = db.cursor()
     a = 'SELECT user, pass FROM users'
     x = c.execute(a)
@@ -62,7 +64,7 @@ def getUsers():
 # return dict of 721 numbers: either 0,1, or 2
 def getPokemon(usern):
     # print "Getting pokemon for %s" % usern
-    db = sqlite3.connect("data/databases.db")
+    db = sqlite3.connect(db_path)
     c = db.cursor()
     a = 'SELECT pokemon FROM users WHERE users.user ="'+ usern + '"'
     x = c.execute(a)
@@ -76,7 +78,7 @@ def getPokemon(usern):
     return pokemon
 
 def getPokemonWithRarity(rarity):
-    db = sqlite3.connect("data/databases.db")
+    db = sqlite3.connect(db_path)
     c = db.cursor()
     pokemon_list = c.execute("SELECT id FROM pokemon_by_rarity WHERE rarity = %d ORDER BY RANDOM() LIMIT 1" % rarity)
     return pokemon_list.fetchone()
