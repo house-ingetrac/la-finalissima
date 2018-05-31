@@ -1,4 +1,4 @@
 #!/usr/bin/python
 import sys
-sys.path.insert(0,"/var/www/idioscript/")
-from idioscript import app as application
+sys.path.insert(0,"/var/www/pokemonstay/")
+from pokemonstay import app as application
