@@ -1,7 +1,7 @@
 import sqlite3, os, csv
 from flask import request, flash
 
-db_path = '/var/www/blubberduck/blubberduck/data/databases.db'
+db_path = os.getcwd() + '/data/databases.db'
 
 def initDB():
     if not os.path.exists(db_path):

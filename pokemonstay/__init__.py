@@ -19,7 +19,7 @@ def root():
 @app.route('/map_script')
 def map_script():
     key = ''
-    with open('/var/www/blubberduck/blubberduck/GOOGLE_MAPS_API_KEY', 'rU') as key_file:
+    with open(os.getcwd() + '/GOOGLE_MAPS_API_KEY', 'rU') as key_file:
         key = key_file.read().strip()
     url = 'https://maps.googleapis.com/maps/api/js?key=%s&libraries=visualization,geometry&callback=initMap' % key
     print 'key = ', key
