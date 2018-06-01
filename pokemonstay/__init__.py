@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 from utils import db
 
 app = Flask(__name__)
-app.secret_key = os.urandom(32)
+app.secret_key = 'shhh issa secret'
 
 def logged_in():
     return 'user' in session
