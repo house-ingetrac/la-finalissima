@@ -11,7 +11,7 @@ def initDB():
         db = sqlite3.connect(db_path)
         c = db.cursor()
         c.execute("CREATE TABLE IF NOT EXISTS users (user TEXT, pass TEXT, pokemon TEXT, PRIMARY KEY(user))")
-        c.execute("CREATE TABLE IF NOT EXISTS pokemon_by_rarity (id INT, name TEXT, rarity INT)")
+        c.execute("CREATE TABLE IF NOT EXISTS pokemon_by_rarity (pokemon_id INT, name TEXT, rarity INT)")
         with open(base_dir + "/data/pokemon_rarity.csv", "rU") as rarity_csv_file:
             next(rarity_csv_file)
             csvreader = csv.reader(rarity_csv_file)
