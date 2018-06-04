@@ -19,7 +19,7 @@ def root():
 @app.route('/map_script')
 def map_script():
     key = ''
-    with open(os.getcwd() + '/GOOGLE_MAPS_API_KEY', 'rU') as key_file:
+    with open(os.path.dirname(__file__) + '/GOOGLE_MAPS_API_KEY', 'rU') as key_file:
         key = key_file.read().strip()
     url = 'https://maps.googleapis.com/maps/api/js?key=%s&libraries=visualization,geometry&callback=initMap' % key
     print 'key = ', key
@@ -163,8 +163,9 @@ def caught():
     return redirect('/map')
 
 
+db.initDB()
 if __name__ == '__main__':
-    db.initDB()
     app.debug = True
     app.run()
+
 

@@ -1,7 +1,9 @@
 import sqlite3, os, csv
 from flask import request, flash
 
-db_path = os.getcwd() + '/data/databases.db'
+base_dir = os.path.dirname(__file__) or '.'
+base_dir += '/..'
+db_path = base_dir + '/data/databases.db'
 
 def initDB():
     if not os.path.exists(db_path):
@@ -10,7 +12,7 @@ def initDB():
         c = db.cursor()
         c.execute("CREATE TABLE IF NOT EXISTS users (user TEXT, pass TEXT, pokemon TEXT, PRIMARY KEY(user))")
         c.execute("CREATE TABLE IF NOT EXISTS pokemon_by_rarity (id INT, name TEXT, rarity INT)")
-        with open("data/pokemon_rarity.csv", "rU") as rarity_csv_file:
+        with open(base_dir + "/data/pokemon_rarity.csv", "rU") as rarity_csv_file:
             next(rarity_csv_file)
             csvreader = csv.reader(rarity_csv_file)
             for row in csvreader:
