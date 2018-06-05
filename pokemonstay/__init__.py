@@ -1,9 +1,16 @@
-import os, urllib2, json, random, pokebase
+import os, urllib2, json, random, pokebase, csv
 from flask import Flask, render_template, request, redirect, url_for, session, flash
+from flask_sqlalchemy import SQLAlchemy
 from utils import db
 
 app = Flask(__name__)
+base_dir = os.path.abspath(os.path.dirname(__file__))
+app.config['SECRET_KEY'] = 'shhh issa secret'
 app.secret_key = 'shhh issa secret'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(base_dir, 'data/app_test.db')
+dbase = SQLAlchemy(app)
+from models import *
+dbase.create_all()
 
 def logged_in():
     return 'user' in session
@@ -19,7 +26,7 @@ def root():
 @app.route('/map_script')
 def map_script():
     key = ''
-    with open(os.path.dirname(__file__) + '/GOOGLE_MAPS_API_KEY', 'rU') as key_file:
+    with open(base_dir + '/GOOGLE_MAPS_API_KEY', 'rU') as key_file:
         key = key_file.read().strip()
     url = 'https://maps.googleapis.com/maps/api/js?key=%s&libraries=visualization,geometry&callback=initMap' % key
     print 'key = ', key
@@ -162,10 +169,6 @@ def caught():
     #success! go back to the map
     return redirect('/map')
 
-
-db.initDB()
 if __name__ == '__main__':
-    app.debug = True
-    app.run()
-
-
+    init_db()
+    app.run(debug=True)

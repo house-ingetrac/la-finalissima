@@ -5,7 +5,7 @@ base_dir = os.path.dirname(__file__) or '.'
 base_dir += '/..'
 db_path = base_dir + '/data/databases.db'
 
-def initDB():
+def init_db():
     if not os.path.exists(db_path):
         print "Creating database..."
         db = sqlite3.connect(db_path)
