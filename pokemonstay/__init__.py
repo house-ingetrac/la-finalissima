@@ -53,7 +53,10 @@ def create():
     if 'user' in session:
         return redirect('/')
     else:
-        users = db.getUsers()
+        users_result = User.query.all()
+        users = {}
+        for line in users_result:
+            users[line.username] = line.password
         if request.form.get('user') in users: #username already exists
             flash("u can't pick that name")
             return redirect(url_for('login'))
@@ -63,7 +66,10 @@ def create():
             return redirect(url_for('login'))
         else:
             #success! log in and view the map
-            db.addUser(request.form.get('user'), request.form.get('password'))
+            uname = request.form.get('user')
+            pword = request.form.get('password')
+            dbase.session.add(User(uname, pword))
+            dbase.session.commit()
             session['user'] = request.form.get('user')
             # print "Made account for %s" % request.form.get('user')
             return redirect(url_for('map'))
@@ -73,7 +79,10 @@ def auth():
     if 'user' in session:
         return redirect('/')
     else:
-        users = db.getUsers()
+        users_result = User.query.all()
+        users = {}
+        for line in users_result:
+            users[line.username] = line.password
         if request.form.get('user') in users:
             #success! log in and view the map
             if request.form.get('password') == users[request.form.get('user')]:
@@ -98,23 +107,21 @@ def map():
 @app.route('/profile')
 def profile():
     if 'user' in session:
-        raw_pokemon = db.getPokemon(session['user'])
+        raw_pokemon = User.query.filter_by(username = session['user']).first().pokemon_list
+        print raw_pokemon
         pokemon = []
         #list of all the pokemon you've encountered and info about them
-        for key in raw_pokemon:
-            pokedata = pokebase.pokemon( int(key)+1)
+        for id, val in enumerate(raw_pokemon):
+            if val == '0':
+                continue
+            pokedata = Pokemon.query.filter_by(id=(int(id)+1)).first()
             this_pokemon = {}
-            this_pokemon['sprite'] = pokedata.sprites.front_default.encode('ascii', 'ignore')
+            this_pokemon['sprite'] = get_sprite(pokedata.id)
             this_pokemon['id'] = pokedata.id
-            this_pokemon['name'] = pokedata.name.encode('ascii', 'ignore').title()
-            this_pokemon['type1'] = pokedata.types[0].type.name.title()
-            if len(pokedata.types) > 1:
-                #type1: this pokemon has been caught!
-                #type2: encountered but not caught
-                this_pokemon['type2'] = pokedata.types[1].type.name.title()
-            else:
-                this_pokemon['type2'] = ''
-            if raw_pokemon[key] == '1':
+            this_pokemon['name'] = pokedata.name
+            this_pokemon['type1'] = pokedata.type_id_1
+            this_pokemon['type2'] = pokedata.type_id_2
+            if val == '1':
                 this_pokemon['caught'] = False
             else:
                 this_pokemon['caught'] = True
@@ -131,13 +138,15 @@ def load_encounter():
     #spawn pokemon based on rarity
     rarity_list = [1]*10 + [2]*9 + [3]*8 + [4]*7 + [5]*6 + [6]*5 + [7]*4 + [8]*3 + [9]*2 + [10]
     rarity = random.choice(rarity_list)
-    pokemon_choice = db.getPokemonWithRarity(rarity)
-    pokemon = pokebase.pokemon(pokemon_choice[0])
+    pokemon_choice = random.choice(Pokemon.query.filter_by(rarity=rarity).all())
     pokedict = {}
-    pokedict['name'] = pokemon.name.encode('ascii', 'ignore')
-    pokedict['sprite'] = pokemon.sprites.front_default.encode('ascii', 'ignore')
-    pokedict['id'] = pokemon.id
+    pokedict['name'] = pokemon_choice.name.encode('ascii')
+    pokedict['sprite'] = get_sprite(pokemon_choice.id)
+    pokedict['id'] = pokemon_choice.id
     return pokedict.__str__()
+
+def get_sprite(pokemon_id):
+    return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/%d.png' % pokemon_id
 
 @app.route('/set_capture/<int:pokemon_id>')
 def set_capture(pokemon_id):
@@ -151,7 +160,13 @@ def capture():
         pokemon_id = session['encounter']
         pokemon_id = int(pokemon_id)
         pokemon = pokebase.pokemon(pokemon_id)
-        db.addPokemon(session['user'], pokemon_id - 1, False) #false- pokemon has been encountered, not caught
+        u = User.query.filter_by(username = session['user']).first()
+        old_blob = u.pokemon_list
+        old_blob = old_blob[:pokemon_id] + '1' + old_blob[pokemon_id + 1:]
+        print 'gotchu a ', pokemon_id
+        u.pokemon = old_blob
+        dbase.session.add(u)
+        dbase.session.commit()
         return render_template('capture.html',
                 sprite = pokemon.sprites.front_default,
                 name = pokemon.name,
@@ -165,7 +180,12 @@ def caught():
     #player caught the pokemon in session['encounter']
     pokemon_id = session['encounter']
     pokemon_id = int(pokemon_id)
-    db.addPokemon(session['user'], pokemon_id - 1, True)
+    u = User.query.filter_by(username = session['user']).first()
+    old_blob = u.pokemon_list
+    old_blob = old_blob[:pokemon_id] + '2' + old_blob[pokemon_id + 1:]
+    u.pokemon = old_blob
+    dbase.session.add(u)
+    dbase.session.commit()
     #success! go back to the map
     return redirect('/map')
 
