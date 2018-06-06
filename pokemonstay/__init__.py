@@ -108,13 +108,12 @@ def map():
 def profile():
     if 'user' in session:
         raw_pokemon = User.query.filter_by(username = session['user']).first().pokemon_list
-        print raw_pokemon
         pokemon = []
         #list of all the pokemon you've encountered and info about them
         for id, val in enumerate(raw_pokemon):
             if val == '0':
                 continue
-            pokedata = Pokemon.query.filter_by(id=(int(id)+1)).first()
+            pokedata = Pokemon.query.filter_by(id=(int(id))).first()
             this_pokemon = {}
             this_pokemon['sprite'] = get_sprite(pokedata.id)
             this_pokemon['id'] = pokedata.id
@@ -159,16 +158,15 @@ def capture():
     if 'user' in session:
         pokemon_id = session['encounter']
         pokemon_id = int(pokemon_id)
-        pokemon = pokebase.pokemon(pokemon_id)
         u = User.query.filter_by(username = session['user']).first()
         old_blob = u.pokemon_list
         old_blob = old_blob[:pokemon_id] + '1' + old_blob[pokemon_id + 1:]
-        print 'gotchu a ', pokemon_id
-        u.pokemon = old_blob
+        u.pokemon_list = old_blob
         dbase.session.add(u)
         dbase.session.commit()
+        pokemon = Pokemon.query.filter_by(id=pokemon_id).first()
         return render_template('capture.html',
-                sprite = pokemon.sprites.front_default,
+                sprite = get_sprite(pokemon.id),
                 name = pokemon.name,
                 title = pokemon.name,
                 log = True)
@@ -183,7 +181,7 @@ def caught():
     u = User.query.filter_by(username = session['user']).first()
     old_blob = u.pokemon_list
     old_blob = old_blob[:pokemon_id] + '2' + old_blob[pokemon_id + 1:]
-    u.pokemon = old_blob
+    u.pokemon_list = old_blob
     dbase.session.add(u)
     dbase.session.commit()
     #success! go back to the map
