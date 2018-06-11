@@ -29,6 +29,10 @@ This uses the [Google Maps JavaScript API](https://developers.google.com/maps/do
    ```bash
    $ pip install flask --user
    ```
+5. Flask SQLAlchemy
+   ```bash
+   $ pip install flask_sqlalchemy --user
+   ```
 
 ### Setup
 
