@@ -1,4 +1,4 @@
-import os, urllib2, json, random, pokebase, csv
+import os, urllib2, json, random, csv
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from flask_sqlalchemy import SQLAlchemy
 from utils import db
