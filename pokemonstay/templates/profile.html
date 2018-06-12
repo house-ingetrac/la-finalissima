@@ -16,7 +16,7 @@
       {% for pkmn in pokemon %}
       <tr>
         <td>{{ pkmn.id }}</td>
-        <td>{{ pkmn.name.capitalize() }}</td>
+        <td><a href="/pokedex/{{ pkmn.id }}">{{ pkmn.name.capitalize() }}</a></td>
         <td><img src="{{ pkmn.sprite }}" width="200px" alt="whodis"></td>
         <td>{{ pkmn.type1 }}</td>
         <td>{{ pkmn.type2 }}</td>
