@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<center>
+  <div class="boxed-container big-width">
+    <h1><b>Search for Pokemon</b></h1>
+    <div>
+      <form action="/search" method="get">
+        <input type="text" name="query" placeholder="Ex: Bulba" size="80">
+        <input type="submit" name="" value="Search">
+      </form>
+    </div>
+  </div>
+</center>
+
+{% endblock content %}

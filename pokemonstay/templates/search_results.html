@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<center>
+  <div class="boxed-container big-width">
+    <h1><b>Search Results</b></h1>
+    <div>
+      <form action="/search" method="get">
+        <input type="text" name="query" value="">
+        <input type="submit" name="" value="Search">
+      </form>
+      <br>
+      {% if results %}
+      <table>
+        <tr>
+          <td>Pokedex #</td>
+          <td>Name</td>
+          <td>Sprite</td>
+          <td>Primary Type</td>
+          <td>Secondary Type</td>
+        </tr>
+        {% for pokemon in results %}
+        <tr>
+          <td>{{ pokemon.id }}</td>
+          <td><a href="/pokedex/{{ pokemon.id }}">{{ pokemon.name.capitalize() }}</a></td>
+          <td><img src="{{ get_sprite(pokemon.id) }}"></td>
+          <td>{{ pokemon.type_1.capitalize() }}</td>
+          <td>{{ pokemon.type_2.capitalize() }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+      {% else %}
+      <h3>No results for {{ query }}</h3>
+      {% endif %}
+    </div>
+  </div>
+</center>
+
+{% endblock content %}
+

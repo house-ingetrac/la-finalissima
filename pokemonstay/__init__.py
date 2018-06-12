@@ -1,16 +1,15 @@
 import os, urllib2, json, random, csv
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from flask_sqlalchemy import SQLAlchemy
-from utils import db
 
 app = Flask(__name__)
 base_dir = os.path.abspath(os.path.dirname(__file__))
 app.config['SECRET_KEY'] = 'shhh issa secret'
 app.secret_key = 'shhh issa secret'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(base_dir, 'data/app_test.db')
-dbase = SQLAlchemy(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(base_dir, 'data/app.db')
+db = SQLAlchemy(app)
 from models import *
-dbase.create_all()
+db.create_all()
 
 def logged_in():
     return 'user' in session
@@ -18,6 +17,7 @@ def logged_in():
 #root route
 @app.route('/')
 def root():
+    init_db()
     if 'user' in session:
         return redirect('/map')
     else:
@@ -68,8 +68,8 @@ def create():
             #success! log in and view the map
             uname = request.form.get('user')
             pword = request.form.get('password')
-            dbase.session.add(User(uname, pword))
-            dbase.session.commit()
+            db.session.add(User(uname, pword))
+            db.session.commit()
             session['user'] = request.form.get('user')
             # print "Made account for %s" % request.form.get('user')
             return redirect(url_for('map'))
@@ -118,8 +118,8 @@ def profile():
             this_pokemon['sprite'] = get_sprite(pokedata.id)
             this_pokemon['id'] = pokedata.id
             this_pokemon['name'] = pokedata.name
-            this_pokemon['type1'] = pokedata.type_id_1
-            this_pokemon['type2'] = pokedata.type_id_2
+            this_pokemon['type1'] = pokedata.type_1.capitalize()
+            this_pokemon['type2'] = pokedata.type_2.capitalize()
             if val == '1':
                 this_pokemon['caught'] = False
             else:
@@ -162,8 +162,8 @@ def capture():
         old_blob = u.pokemon_list
         old_blob = old_blob[:pokemon_id] + '1' + old_blob[pokemon_id + 1:]
         u.pokemon_list = old_blob
-        dbase.session.add(u)
-        dbase.session.commit()
+        db.session.add(u)
+        db.session.commit()
         pokemon = Pokemon.query.filter_by(id=pokemon_id).first()
         return render_template('capture.html',
                 sprite = get_sprite(pokemon.id),
@@ -182,10 +182,38 @@ def caught():
     old_blob = u.pokemon_list
     old_blob = old_blob[:pokemon_id] + '2' + old_blob[pokemon_id + 1:]
     u.pokemon_list = old_blob
-    dbase.session.add(u)
-    dbase.session.commit()
+    db.session.add(u)
+    db.session.commit()
     #success! go back to the map
     return redirect('/map')
+
+@app.route('/search')
+def search():
+    if request.args.get('query'):
+        query = request.args.get('query')
+        results = get_pokemon_list(query)
+        if len(results) == 1:
+            return redirect('/pokedex/' + str(results[0].id))
+        return render_template('search_results.html', title = 'Results', log = True, results = results, query = query, get_sprite = get_sprite)
+    return render_template('search.html', title = 'Pokedex', log = True)
+
+def get_pokemon_list(query):
+    try:
+        pokemon_id = int(query)
+        return Pokemon.query.filter_by(id = pokemon_id).all()
+    except:
+        pass
+    all_pokemon = Pokemon.query.all()
+    ret = []
+    for p in all_pokemon:
+        if query in p.name:
+            ret.append(p)
+    return ret
+
+@app.route('/pokedex/<int:pokemon_id>')
+def pokedex(pokemon_id):
+    pokemon = Pokemon.query.filter_by(id = pokemon_id).first()
+    return render_template('pokedex.html', pokemon = pokemon, title = pokemon.name.capitalize(), log = True, get_sprite = get_sprite)
 
 if __name__ == '__main__':
     init_db()

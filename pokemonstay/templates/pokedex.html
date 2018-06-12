@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+<center>
+  <div class="boxed-container big-width">
+    <h2>{{ pokemon.name.capitalize() }}</h2>
+    <table>
+      <tr>
+        <td width="300px"><img src="{{ get_sprite(pokemon.id) }}" width="300px"></td>
+        <td>
+          <table height="100%" width="100%">
+            <tr>
+              <th colspan="4">Species</th>
+            </tr>
+            <tr>
+              <td colspan="4">{{ pokemon.name.capitalize() }}</td>
+            </tr>
+            <tr>
+              <th>Type 1</th>
+              <th>Type 2</th>
+              <th>Height</th>
+              <th>Weight</th>
+            </tr>
+            <tr>
+              <td>{{ pokemon.type_1.capitalize() }}</td>
+              <td>{{ pokemon.type_2.capitalize() }}</td>
+              <td>{{ pokemon.height / 10 }} m</td>
+              <td>{{ pokemon.weight / 10 }} kg</td>
+            </tr>
+            <tr>
+              <th colspan="4">
+                Description
+              </th>
+            </tr>
+            <tr>
+              <td colspan="4">{{ pokemon.description }}</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <table width="100%">
+            <tr>
+              <th>HP</th>
+              <th>Attack</th>
+              <th>Defense</th>
+              <th>Special Attack</th>
+              <th>Special Defense</th>
+              <th>Speed</th>
+            </tr>
+            <tr>
+              <td>{{ pokemon.hp }}</td>
+              <td>{{ pokemon.attack }}</td>
+              <td>{{ pokemon.defense }}</td>
+              <td>{{ pokemon.sp_attack }}</td>
+              <td>{{ pokemon.sp_defense }}</td>
+              <td>{{ pokemon.speed }}</td>
+            </tr>
+          </table>
+              </td>
+      </tr>
+    </table>
+  </div>
+</center>
+{% endblock content %}

@@ -13,22 +13,22 @@
         <td>Secondary Type</td>
         <td>Caught?</td>
       </tr>
-    {% for pkmn in pokemon %}
-    <tr>
-      <td>{{ pkmn.id }}</td>
-      <td>{{ pkmn.name }}</td>
-      <td><img src="{{ pkmn.sprite }}" width="200px" alt="whodis"></td>
-      <td>{{ pkmn.type1 }}</td>
-      <td>{{ pkmn.type2 }}</td>
-      <td>
-        {% if pkmn.caught %}
-        Yes
-        {% else %}
-        No
-        {% endif %}
-      </td>
-    {% endfor %}
-    </tr>
+      {% for pkmn in pokemon %}
+      <tr>
+        <td>{{ pkmn.id }}</td>
+        <td>{{ pkmn.name.capitalize() }}</td>
+        <td><img src="{{ pkmn.sprite }}" width="200px" alt="whodis"></td>
+        <td>{{ pkmn.type1 }}</td>
+        <td>{{ pkmn.type2 }}</td>
+        <td>
+          {% if pkmn.caught %}
+          Yes
+          {% else %}
+          No
+          {% endif %}
+        </td>
+        {% endfor %}
+      </tr>
     </table>
   </div>
 </center>
