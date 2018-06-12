@@ -27,11 +27,11 @@ This uses the [Google Maps JavaScript API](https://developers.google.com/maps/do
    ```
 4. Flask
    ```bash
-   $ pip install flask --user
+   $ sudo pip install flask
    ```
 5. Flask SQLAlchemy
    ```bash
-   $ pip install flask_sqlalchemy --user
+   $ sudo pip install flask_sqlalchemy
    ```
 
 ### Setup
@@ -44,7 +44,7 @@ This uses the [Google Maps JavaScript API](https://developers.google.com/maps/do
 1. Install all dependencies listed above
 2. Procure an API key for Google Maps from the following site: [GOOGLE MAPS API](https://developers.google.com/maps/documentation/javascript/)
    * Click "Get a key" and follow the given instructions
-   * Insert your key into `GOOGLE_MAPS_API_KEY`
+   * Insert your key into `GOOGLE_MAPS_API_KEY` (in pokemonstay directory)
    * Example GOOGLE_MAPS_API_KEY file:
      ```
      EAKLN212asdf
