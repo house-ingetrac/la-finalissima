@@ -31,7 +31,7 @@
         </td>
 	<td>
 	  <form method="POST" action="/trading">
-	    <input class="btn" type="submit" name="Pokemon" value="Trade">
+	    <input class="btn" type="submit" name={{ pkmn.id }} value="Trade">
 	  </form>
 	</td>
         {% endfor %}

@@ -215,6 +215,34 @@ def pokedex(pokemon_id):
     pokemon = Pokemon.query.filter_by(id = pokemon_id).first()
     return render_template('pokedex.html', pokemon = pokemon, title = pokemon.name.capitalize(), log = True, get_sprite = get_sprite)
 
+@app.route('/trading', methods=['GET','POST'])
+def trading():
+    if 'user' in session:
+        raw_pokemon = User.query.filter_by(username = session['user']).first().pokemon_list
+        pokemon = []
+        #list of all the pokemon you've encountered and info about them
+        for id, val in enumerate(raw_pokemon):
+            if val == '0':
+                continue
+            pokedata = Pokemon.query.filter_by(id=(int(id))).first()
+            this_pokemon = {}
+            this_pokemon['sprite'] = get_sprite(pokedata.id)
+            this_pokemon['id'] = pokedata.id
+            this_pokemon['name'] = pokedata.name
+            this_pokemon['type1'] = pokedata.type_1.capitalize()
+            this_pokemon['type2'] = pokedata.type_2.capitalize()
+            if val == '1':
+                this_pokemon['caught'] = False
+            else:
+                this_pokemon['caught'] = True
+            pokemon.append(this_pokemon)
+            return render_template('trading.html', pokemon = pokemon,
+                                   log = True)
+        else:
+            return redirect('/login')
+    
 if __name__ == '__main__':
     init_db()
     app.run(debug=True)
+
+    
