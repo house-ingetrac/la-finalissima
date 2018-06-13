@@ -5,14 +5,16 @@
   <div class="boxed-container">
     <h1><b>Your Pok&eacute;mon</b></h1>
     <table>
-      <tr>
+      <th>
         <td>Pokedex #</td>
         <td>Name</td>
         <td>Sprite</td>
         <td>Primary Type</td>
         <td>Secondary Type</td>
         <td>Caught?</td>
-      </tr>
+        <td>Trading</td>
+
+      </th>
       {% for pkmn in pokemon %}
       <tr>
         <td>{{ pkmn.id }}</td>
@@ -27,6 +29,11 @@
           No
           {% endif %}
         </td>
+	<td>
+	  <form method="POST" action="/trading">
+	    <input class="btn" type="submit" name={{ pkmn.id }} value="Trade">
+	  </form>
+	</td>
         {% endfor %}
       </tr>
     </table>
